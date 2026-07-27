@@ -1,0 +1,17 @@
+{
+  "sistema": "gamecube",
+  "juegos": [
+    {
+      "id": 601,
+      "titulo": "Super Smash Bros Melee",
+      "año": 2001,
+      "genero": "Lucha",
+      "desarrolladora": "Nintendo",
+      "descripcion": "El mejor Smash Bros de la historia. Todos los personajes de Nintendo se enfrentan en combates épicos.",
+      "cover": "covers/gamecube/melee.jpg",
+      "download": "#",
+      "torrent": "#",
+      "magnet": "#"
+    }
+  ]
+}
