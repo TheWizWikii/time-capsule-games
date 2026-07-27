@@ -1,0 +1,41 @@
+{
+  "sistema": "snes",
+  "juegos": [
+    {
+      "id": 201,
+      "titulo": "Super Mario World",
+      "año": 1990,
+      "genero": "Plataformas",
+      "desarrolladora": "Nintendo",
+      "descripcion": "Mario y Yoshi en una aventura inolvidable a través del Dinosaur Land.",
+      "cover": "covers/snes/super_mario_world.jpg",
+      "download": "#",
+      "torrent": "#",
+      "magnet": "#"
+    },
+    {
+      "id": 202,
+      "titulo": "The Legend of Zelda: A Link to the Past",
+      "año": 1991,
+      "genero": "Aventura",
+      "desarrolladora": "Nintendo",
+      "descripcion": "Una de las mejores entregas de la saga. Link viaja entre dos mundos para derrotar a Ganon.",
+      "cover": "covers/snes/zelda_alttp.jpg",
+      "download": "#",
+      "torrent": "#",
+      "magnet": "#"
+    },
+    {
+      "id": 203,
+      "titulo": "Donkey Kong Country",
+      "año": 1994,
+      "genero": "Plataformas",
+      "desarrolladora": "Rare",
+      "descripcion": "Gráficos revolucionarios para la época. Donkey Kong y Diddy Kong recuperan su plátano robado.",
+      "cover": "covers/snes/dkc.jpg",
+      "download": "#",
+      "torrent": "#",
+      "magnet": "#"
+    }
+  ]
+}
