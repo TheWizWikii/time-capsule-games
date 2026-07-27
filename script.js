@@ -67,7 +67,6 @@ const gamesCount = document.getElementById('gamesCount');
 const totalGamesSpan = document.getElementById('totalGames');
 const totalSystemsSpan = document.getElementById('totalSystems');
 const systemsNav = document.querySelector('.systems-scroll');
-const initialLoading = document.getElementById('initialLoading');
 
 const modal = document.getElementById('gameModal');
 const modalClose = document.querySelector('.modal-close');
@@ -86,12 +85,16 @@ const modalMagnetBtn = document.getElementById('modalMagnetBtn');
 //  INICIALIZAR CON DATOS DE PRUEBA
 // =============================================
 function inicializar() {
+    console.log('🚀 Inicializando con datos de prueba...');
+    
     // Copiar datos de prueba
     todosLosJuegos = juegosDePrueba.map(j => ({
         ...j,
         sistemaNombre: 'Xbox 360',
         sistemaIcono: 'fa-xbox'
     }));
+    
+    console.log(`📦 ${todosLosJuegos.length} juegos cargados`);
     
     // Generar filtros
     generarFiltros();
@@ -101,11 +104,6 @@ function inicializar() {
     // Habilitar elementos
     searchInput.disabled = false;
     document.querySelector('.search-btn').disabled = false;
-    
-    // Ocultar loading
-    if (initialLoading) {
-        initialLoading.style.display = 'none';
-    }
 }
 
 // =============================================
@@ -329,4 +327,6 @@ document.getElementById('listViewBtn').addEventListener('click', function() {
 // =============================================
 //  INICIALIZACIÓN
 // =============================================
+console.log('🔄 Iniciando RetroVault...');
 inicializar();
+console.log('✅ RetroVault listo!');
