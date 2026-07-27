@@ -688,3 +688,18 @@ a {
         max-width: 150px;
     }
 }
+
+/* Badge de contador en los filtros */
+.system-filter .badge {
+    background: rgba(255, 255, 255, 0.08);
+    font-size: 10px;
+    padding: 1px 8px;
+    border-radius: 10px;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin-left: 2px;
+}
+.system-filter.active .badge {
+    background: rgba(0, 0, 0, 0.2);
+    color: #000;
+}
