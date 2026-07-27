@@ -36,45 +36,6 @@ const modalTorrentBtn = document.getElementById('modalTorrentBtn');
 const modalMagnetBtn = document.getElementById('modalMagnetBtn');
 
 // =============================================
-//  MOSTRAR SPINNER DE CARGA
-// =============================================
-function mostrarSpinner(mensaje = 'Cargando biblioteca de juegos...') {
-    grid.innerHTML = `
-        <div class="loading-message" id="loadingSpinner">
-            <div class="loading-spinner"></div>
-            <p>${mensaje}</p>
-        </div>
-    `;
-    noResults.style.display = 'none';
-}
-
-// =============================================
-//  MOSTRAR PÁGINA DE ERROR
-// =============================================
-function mostrarError(mensaje, detalle = '') {
-    grid.innerHTML = `
-        <div class="error-page">
-            <i class="fas fa-exclamation-triangle error-icon"></i>
-            <h2>⚠️ Error al cargar los datos</h2>
-            <p>${mensaje}</p>
-            ${detalle ? `
-                <div class="error-details">
-                    <strong>Detalle técnico:</strong><br />
-                    ${detalle}
-                </div>
-            ` : ''}
-            <button class="btn-retry" onclick="window.location.reload()">
-                <i class="fas fa-sync-alt"></i> Reintentar
-            </button>
-        </div>
-    `;
-    galleryTitle.textContent = '⚠️ ERROR';
-    gamesCount.textContent = '—';
-    searchInput.disabled = true;
-    document.querySelector('.search-btn').disabled = true;
-}
-
-// =============================================
 //  CARGAR SISTEMAS (solo la lista)
 // =============================================
 async function cargarSistemas() {
