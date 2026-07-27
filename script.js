@@ -8,6 +8,7 @@ let filtroSistema = 'xbox360';
 let busqueda = '';
 let vista = 'grid';
 let cargando = false;
+let errorCarga = false;
 
 // =============================================
 //  REFERENCIAS AL DOM
@@ -20,6 +21,7 @@ const gamesCount = document.getElementById('gamesCount');
 const totalGamesSpan = document.getElementById('totalGames');
 const totalSystemsSpan = document.getElementById('totalSystems');
 const systemsNav = document.querySelector('.systems-scroll');
+const initialLoading = document.getElementById('initialLoading');
 
 const modal = document.getElementById('gameModal');
 const modalClose = document.querySelector('.modal-close');
@@ -35,37 +37,97 @@ const modalTorrentBtn = document.getElementById('modalTorrentBtn');
 const modalMagnetBtn = document.getElementById('modalMagnetBtn');
 
 // =============================================
-//  CARGAR SISTEMAS (solo la lista)
+//  MOSTRAR PÁGINA DE ERROR
+// =============================================
+function mostrarError(mensaje, detalle = '') {
+    errorCarga = true;
+    
+    // Deshabilitar elementos interactivos
+    searchInput.disabled = true;
+    document.querySelector('.search-btn').disabled = true;
+    
+    // Ocultar loading
+    if (initialLoading) initialLoading.style.display = 'none';
+    
+    // Mostrar mensaje de error
+    grid.innerHTML = `
+        <div class="error-page">
+            <i class="fas fa-exclamation-triangle error-icon"></i>
+            <h2>⚠️ Error al cargar los datos</h2>
+            <p>No se pudieron cargar los archivos de juegos. Esto puede deberse a:</p>
+            <ul style="text-align:left;color:var(--text-secondary);font-size:14px;margin:12px auto;max-width:400px;list-style:none;padding:0;">
+                <li style="padding:4px 0;">• La carpeta <strong>data/</strong> no existe</li>
+                <li style="padding:4px 0;">• Los archivos <strong>JSON</strong> están vacíos o dañados</li>
+                <li style="padding:4px 0;">• Problema de conexión o permisos</li>
+            </ul>
+            ${detalle ? `
+                <div class="error-details">
+                    <strong>Detalle técnico:</strong><br />
+                    ${detalle}
+                </div>
+            ` : ''}
+            <p style="font-size:14px;color:var(--text-muted);margin-bottom:20px;">
+                ${mensaje || 'Revisa que los archivos existan en la carpeta data/'}
+            </p>
+            <button class="btn-retry" onclick="window.location.reload()">
+                <i class="fas fa-sync-alt"></i> Reintentar
+            </button>
+        </div>
+    `;
+    
+    galleryTitle.textContent = '⚠️ ERROR';
+    gamesCount.textContent = '—';
+}
+
+// =============================================
+//  CARGAR SISTEMAS
 // =============================================
 async function cargarSistemas() {
     try {
         const respuesta = await fetch('data/sistemas.json');
+        
+        if (!respuesta.ok) {
+            throw new Error(`HTTP ${respuesta.status}: ${respuesta.statusText}`);
+        }
+        
         const data = await respuesta.json();
+        
+        if (!data.sistemas || data.sistemas.length === 0) {
+            throw new Error('El archivo sistemas.json está vacío o mal formado');
+        }
+        
         sistemas = data.sistemas;
         
         // Inicializar estructura vacía
         sistemas.forEach(sistema => {
-            juegosPorSistema[sistema.id] = null; // null = no cargado aún
+            juegosPorSistema[sistema.id] = null;
         });
         
-        // Generar filtros dinámicamente
+        // Generar filtros
         generarFiltros();
         
-        // Cargar SOLO el sistema por defecto (Xbox 360)
+        // Cargar sistema por defecto
         await cargarJuegosSistema(filtroSistema);
         
         // Inicializar
         actualizarStats();
         renderizarJuegos();
         
+        // Habilitar elementos
+        searchInput.disabled = false;
+        document.querySelector('.search-btn').disabled = false;
+        
     } catch (error) {
         console.error('Error cargando sistemas:', error);
-        cargarDatosRespaldo();
+        mostrarError(
+            'No se pudo cargar la lista de sistemas.',
+            `Error: ${error.message}`
+        );
     }
 }
 
 // =============================================
-//  CARGA PEREZOSA: SOLO EL SISTEMA QUE TOCA
+//  CARGA PEREZOSA DE JUEGOS
 // =============================================
 async function cargarJuegosSistema(sistemaId) {
     // Si ya está cargado, no hacer nada
@@ -74,20 +136,31 @@ async function cargarJuegosSistema(sistemaId) {
     }
     
     const sistema = sistemas.find(s => s.id === sistemaId);
-    if (!sistema) return;
+    if (!sistema) {
+        console.warn(`Sistema ${sistemaId} no encontrado`);
+        return;
+    }
     
     cargando = true;
     
     try {
         const respuesta = await fetch(`data/${sistema.archivo}`);
+        
+        if (!respuesta.ok) {
+            throw new Error(`HTTP ${respuesta.status}: ${respuesta.statusText}`);
+        }
+        
         const data = await respuesta.json();
+        
+        if (!data.juegos) {
+            throw new Error(`El archivo ${sistema.archivo} no tiene la propiedad "juegos"`);
+        }
         
         // Guardar juegos de este sistema
         juegosPorSistema[sistemaId] = data.juegos;
         
-        // Añadir al array plano TODOS los juegos (para búsqueda global)
+        // Añadir al array plano
         data.juegos.forEach(juego => {
-            // Evitar duplicados (por si acaso)
             const existe = todosLosJuegos.some(j => j.id === juego.id && j.sistema === sistemaId);
             if (!existe) {
                 todosLosJuegos.push({
@@ -99,10 +172,10 @@ async function cargarJuegosSistema(sistemaId) {
             }
         });
         
-        // Actualizar badges de los filtros
+        // Actualizar badges
         actualizarBadges();
         
-        // Si el filtro actual es este sistema, renderizar
+        // Renderizar si es el filtro actual
         if (filtroSistema === sistemaId || filtroSistema === 'all') {
             renderizarJuegos();
         }
@@ -110,20 +183,27 @@ async function cargarJuegosSistema(sistemaId) {
     } catch (error) {
         console.error(`Error cargando ${sistema.archivo}:`, error);
         juegosPorSistema[sistemaId] = []; // Vacío para no reintentar
+        
+        // Si es el sistema que se está viendo, mostrar error
+        if (filtroSistema === sistemaId) {
+            mostrarError(
+                `No se pudieron cargar los juegos de ${sistema.nombre}.`,
+                `Error al cargar ${sistema.archivo}: ${error.message}`
+            );
+        }
     }
     
     cargando = false;
 }
 
 // =============================================
-//  GENERAR FILTROS AUTOMÁTICAMENTE
+//  GENERAR FILTROS
 // =============================================
 function generarFiltros() {
-    // Limpiar filtros existentes
     const filtrosExistentes = systemsNav.querySelectorAll('.system-filter');
     filtrosExistentes.forEach(btn => btn.remove());
     
-    // Crear botón "Todos"
+    // Botón "Todos"
     const btnTodos = document.createElement('button');
     btnTodos.className = 'system-filter';
     btnTodos.dataset.system = 'all';
@@ -136,7 +216,7 @@ function generarFiltros() {
     });
     systemsNav.appendChild(btnTodos);
     
-    // Crear botón para cada sistema
+    // Botones por sistema
     sistemas.forEach(sistema => {
         const btn = document.createElement('button');
         btn.className = 'system-filter';
@@ -147,7 +227,6 @@ function generarFiltros() {
             document.querySelectorAll('.system-filter').forEach(b => b.classList.remove('active'));
             this.classList.add('active');
             filtroSistema = sistema.id;
-            // Cargar juegos si no están cargados
             if (juegosPorSistema[sistema.id] === null) {
                 cargarJuegosSistema(sistema.id);
             } else {
@@ -166,16 +245,14 @@ function generarFiltros() {
 }
 
 // =============================================
-//  ACTUALIZAR BADGES DE FILTROS
+//  ACTUALIZAR BADGES
 // =============================================
 function actualizarBadges() {
-    // Actualizar badge de "Todos"
     const badgeAll = document.getElementById('badge-all');
     if (badgeAll) {
         badgeAll.textContent = todosLosJuegos.length;
     }
     
-    // Actualizar badge de cada sistema
     sistemas.forEach(sistema => {
         const badge = document.getElementById(`badge-${sistema.id}`);
         if (badge) {
@@ -216,12 +293,15 @@ function getNombreSistema(sistemaId) {
 //  RENDERIZADO DE JUEGOS
 // =============================================
 function renderizarJuegos() {
+    // Si hay error, no hacer nada
+    if (errorCarga) return;
+    
     // Si está cargando, mostrar mensaje
     if (cargando) {
         grid.innerHTML = `
             <div class="loading-message">
-                <i class="fas fa-spinner fa-spin"></i>
-                <p>Cargando juegos...</p>
+                <div class="loading-spinner"></div>
+                <p>Cargando juegos de ${getNombreSistema(filtroSistema)}...</p>
             </div>
         `;
         noResults.style.display = 'none';
@@ -232,7 +312,7 @@ function renderizarJuegos() {
     if (filtroSistema !== 'all' && juegosPorSistema[filtroSistema] === null) {
         grid.innerHTML = `
             <div class="loading-message">
-                <i class="fas fa-download"></i>
+                <div class="loading-spinner"></div>
                 <p>Cargando ${getNombreSistema(filtroSistema)}...</p>
             </div>
         `;
@@ -265,7 +345,7 @@ function renderizarJuegos() {
         <div class="game-card" data-id="${j.id}" onclick="abrirModal(${j.id})">
             <div class="card-cover">
                 ${j.cover ? 
-                    `<img src="${j.cover}" alt="${j.titulo}" loading="lazy" />` : 
+                    `<img src="${j.cover}" alt="${j.titulo}" loading="lazy" onerror="this.src='';this.parentElement.innerHTML='<div class=\\'no-cover\\'><i class=\\'fas fa-image\\'></i></div>'" />` : 
                     `<div class="no-cover"><i class="fas fa-image"></i></div>`
                 }
             </div>
@@ -399,78 +479,6 @@ document.getElementById('listViewBtn').addEventListener('click', function() {
     this.classList.add('active');
     renderizarJuegos();
 });
-
-// =============================================
-//  DATOS DE RESPALDO (por si falla la carga)
-// =============================================
-function cargarDatosRespaldo() {
-    sistemas = [
-        {
-            id: 'xbox360',
-            nombre: 'Xbox 360',
-            icono: 'fa-xbox',
-            archivo: 'xbox360.json'
-        }
-    ];
-    juegosPorSistema = {
-        xbox360: [
-            {
-                id: 1,
-                titulo: "Street Fighter X Tekken",
-                año: 2012,
-                genero: "Lucha",
-                desarrolladora: "Capcom",
-                descripcion: "El crossover definitivo.",
-                cover: "covers/xbox360/sfxtekken.jpg",
-                download: "#",
-                torrent: "#",
-                magnet: "#"
-            }
-        ]
-    };
-    todosLosJuegos = [];
-    sistemas.forEach(sistema => {
-        juegosPorSistema[sistema.id].forEach(juego => {
-            todosLosJuegos.push({
-                ...juego,
-                sistema: sistema.id,
-                sistemaNombre: sistema.nombre,
-                sistemaIcono: sistema.icono
-            });
-        });
-    });
-    generarFiltros();
-    actualizarStats();
-    renderizarJuegos();
-}
-
-// =============================================
-//  ESTILOS PARA ESTADOS DE CARGA
-// =============================================
-// Añadir al CSS (puedes ponerlo en style.css)
-const styleCarga = document.createElement('style');
-styleCarga.textContent = `
-    .loading-message {
-        text-align: center;
-        padding: 60px 20px;
-        color: var(--text-secondary);
-        grid-column: 1 / -1;
-    }
-    .loading-message i {
-        font-size: 48px;
-        color: var(--accent);
-        margin-bottom: 16px;
-        display: block;
-    }
-    .loading-message .fa-spin {
-        animation: fa-spin 1s linear infinite;
-    }
-    @keyframes fa-spin {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
-    }
-`;
-document.head.appendChild(styleCarga);
 
 // =============================================
 //  INICIALIZACIÓN
