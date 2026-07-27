@@ -22,6 +22,7 @@
     --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     --color-torrent: #ff6b35;
     --color-magnet: #6c5ce7;
+    --color-error: #ff4757;
 }
 
 body {
@@ -118,6 +119,10 @@ a {
 .search-wrapper input::placeholder {
     color: var(--text-muted);
 }
+.search-wrapper input:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
 
 .search-btn {
     background: var(--accent);
@@ -134,9 +139,13 @@ a {
     gap: 8px;
     letter-spacing: 0.5px;
 }
-.search-btn:hover {
+.search-btn:hover:not(:disabled) {
     opacity: 0.85;
     transform: scale(1.02);
+}
+.search-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
 }
 
 /* ===== SYSTEMS NAV ===== */
@@ -171,9 +180,13 @@ a {
 .system-filter i {
     font-size: 14px;
 }
-.system-filter:hover {
+.system-filter:hover:not(:disabled) {
     color: var(--text-primary);
     background: var(--bg-card);
+}
+.system-filter:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
 }
 .system-filter.active {
     color: var(--accent);
@@ -181,6 +194,19 @@ a {
 }
 .system-filter.active i {
     color: var(--accent);
+}
+.system-filter .badge {
+    background: rgba(255, 255, 255, 0.08);
+    font-size: 10px;
+    padding: 1px 8px;
+    border-radius: 10px;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin-left: 2px;
+}
+.system-filter.active .badge {
+    background: rgba(0, 0, 0, 0.2);
+    color: #000;
 }
 
 /* ===== MAIN GALLERY ===== */
@@ -215,6 +241,91 @@ a {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
     gap: 28px;
+}
+
+/* ===== LOADING MESSAGE ===== */
+.loading-message {
+    text-align: center;
+    padding: 80px 20px;
+    color: var(--text-secondary);
+    grid-column: 1 / -1;
+}
+.loading-message .loading-spinner {
+    width: 48px;
+    height: 48px;
+    border: 4px solid var(--border-color);
+    border-top: 4px solid var(--accent);
+    border-radius: 50%;
+    margin: 0 auto 16px;
+    animation: spin 1s linear infinite;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+.loading-message p {
+    font-size: 16px;
+    color: var(--text-muted);
+}
+
+/* ===== ERROR PAGE ===== */
+.error-page {
+    text-align: center;
+    padding: 80px 20px 60px;
+    grid-column: 1 / -1;
+    max-width: 600px;
+    margin: 0 auto;
+}
+.error-page .error-icon {
+    font-size: 72px;
+    color: var(--color-error);
+    margin-bottom: 20px;
+    display: block;
+}
+.error-page h2 {
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+}
+.error-page p {
+    color: var(--text-secondary);
+    font-size: 16px;
+    line-height: 1.7;
+    margin-bottom: 8px;
+}
+.error-page .error-details {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    padding: 16px 20px;
+    margin: 20px 0 28px;
+    text-align: left;
+    font-size: 13px;
+    color: var(--text-muted);
+    font-family: monospace;
+    word-break: break-all;
+}
+.error-page .error-details strong {
+    color: var(--text-secondary);
+}
+.error-page .btn-retry {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--accent);
+    color: #000;
+    font-weight: 700;
+    padding: 12px 32px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-size: 15px;
+    transition: var(--transition);
+}
+.error-page .btn-retry:hover {
+    opacity: 0.85;
+    transform: scale(1.02);
 }
 
 /* ===== GAME CARD ===== */
@@ -256,12 +367,11 @@ a {
     opacity: 0.2;
 }
 
-/* ===== TÍTULO CENTRADO Y SIN SUBTÍTULO ===== */
 .game-card .card-info {
     padding: 12px 16px 14px;
     background: var(--bg-card);
     transition: var(--transition);
-    text-align: center; /* Título centrado */
+    text-align: center;
 }
 .game-card:hover .card-info {
     background: var(--bg-card-hover);
@@ -270,14 +380,12 @@ a {
 .game-card .card-title {
     font-size: 15px;
     font-weight: 700;
-    margin-bottom: 0; /* Sin margen inferior */
+    margin-bottom: 0;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     letter-spacing: -0.2px;
 }
-
-/* ELIMINADO: .card-subtitle ya no se usa */
 
 /* ===== LIST VIEW ===== */
 .game-grid.list-view {
@@ -429,7 +537,6 @@ a {
     margin-top: 8px;
 }
 
-/* Botón Descarga Directa (amarillo/azul) */
 .btn-download {
     background: var(--accent);
     color: #000;
@@ -447,18 +554,16 @@ a {
     min-width: 140px;
     justify-content: center;
 }
-.btn-download:hover {
+.btn-download:hover:not(.disabled) {
     opacity: 0.85;
     transform: scale(1.02);
 }
-.btn-download[disabled],
 .btn-download.disabled {
     opacity: 0.4;
     pointer-events: none;
     cursor: not-allowed;
 }
 
-/* Botón Torrent (naranja) */
 .btn-torrent {
     background: var(--color-torrent);
     color: #fff;
@@ -476,18 +581,16 @@ a {
     min-width: 140px;
     justify-content: center;
 }
-.btn-torrent:hover {
+.btn-torrent:hover:not(.disabled) {
     opacity: 0.85;
     transform: scale(1.02);
 }
-.btn-torrent[disabled],
 .btn-torrent.disabled {
     opacity: 0.4;
     pointer-events: none;
     cursor: not-allowed;
 }
 
-/* Botón Magnet (morado) */
 .btn-magnet {
     background: var(--color-magnet);
     color: #fff;
@@ -505,18 +608,16 @@ a {
     min-width: 140px;
     justify-content: center;
 }
-.btn-magnet:hover {
+.btn-magnet:hover:not(.disabled) {
     opacity: 0.85;
     transform: scale(1.02);
 }
-.btn-magnet[disabled],
 .btn-magnet.disabled {
     opacity: 0.4;
     pointer-events: none;
     cursor: not-allowed;
 }
 
-/* Botón Cerrar (fuera del flex) */
 .modal-close-wrapper {
     margin-top: 12px;
 }
@@ -674,6 +775,15 @@ a {
         text-align: center;
         width: 100%;
     }
+    .error-page {
+        padding: 40px 16px;
+    }
+    .error-page .error-icon {
+        font-size: 48px;
+    }
+    .error-page h2 {
+        font-size: 24px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -687,19 +797,4 @@ a {
     .modal-cover {
         max-width: 150px;
     }
-}
-
-/* Badge de contador en los filtros */
-.system-filter .badge {
-    background: rgba(255, 255, 255, 0.08);
-    font-size: 10px;
-    padding: 1px 8px;
-    border-radius: 10px;
-    font-weight: 600;
-    color: var(--text-muted);
-    margin-left: 2px;
-}
-.system-filter.active .badge {
-    background: rgba(0, 0, 0, 0.2);
-    color: #000;
 }
