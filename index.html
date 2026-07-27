@@ -82,6 +82,21 @@
             <h3>No se encontraron juegos</h3>
             <p>Prueba con otro término de búsqueda o filtro.</p>
         </div>
+
+        <!-- ============================================================ -->
+        <!--  PAGINACIÓN  (NUEVO)                                          -->
+        <!-- ============================================================ -->
+        <div id="paginacion" class="paginacion" style="display: none;">
+            <div class="paginacion-contenedor">
+                <button id="prevPage" class="paginacion-btn" onclick="paginaAnterior()" disabled>
+                    <i class="fas fa-chevron-left"></i> Anterior
+                </button>
+                <span id="pageInfo" class="paginacion-info">1 - 24 de 0</span>
+                <button id="nextPage" class="paginacion-btn" onclick="paginaSiguiente()">
+                    Siguiente <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
     </main>
 
     <!-- ============ FOOTER ============ -->
