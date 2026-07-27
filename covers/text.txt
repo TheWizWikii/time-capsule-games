@@ -16,3 +16,18 @@
     cover: "covers/mi_cover.jpg", // O URL completa
     download: "https://enlace-externo.com/juego"  // O "#" si no tienes
 }
+
+
+
+---
+
+## 📝 Resumen para ti
+
+1. **Crea la carpeta `covers/`** en la raíz y pon tus imágenes dentro.
+2. **Edita `script.js`** para añadir tus juegos. Cada juego tiene:
+   - `cover`: `"covers/mi_juego.jpg"` (si la imagen está en esa carpeta)
+   - `download`: Pon `"#"` si aún no tienes enlace, o la URL cuando la tengas.
+3. **Sube todo a GitHub** y activa Pages.
+4. **Los filtros funcionan** por sistema, búsqueda y vista cuadrícula/lista.
+
+¿Quieres que añada algún sistema más, o que modifique algo en particular?
