@@ -15,7 +15,7 @@ const juegos = [
         genero: "Lucha",
         desarrolladora: "Capcom",
         descripcion: "El crossover definitivo entre dos de las sagas de lucha más importantes. Street Fighter y Tekken se enfrentan en este épico juego de combate.",
-        cover: "covers/street_fighter_x_tekken.jpg",
+        cover: "https://cdn.thegamesdb.net/images/original/boxart/front/13386-1.jpg",
         download: "#"
     },
     {
