@@ -1,0 +1,17 @@
+{
+  "sistema": "megadrive",
+  "juegos": [
+    {
+      "id": 301,
+      "titulo": "Sonic the Hedgehog 2",
+      "año": 1992,
+      "genero": "Plataformas",
+      "desarrolladora": "Sega",
+      "descripcion": "Sonic y Tails se enfrentan al Dr. Robotnik en esta aventura a toda velocidad.",
+      "cover": "covers/megadrive/sonic_2.jpg",
+      "download": "#",
+      "torrent": "#",
+      "magnet": "#"
+    }
+  ]
+}
