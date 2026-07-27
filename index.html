@@ -4,11 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>RetroVault - Preservación de Juegos</title>
-    <!-- Font Awesome para iconos -->
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-    <!-- Google Fonts para tipografía moderna -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
-    <!-- Nuestro CSS -->
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -17,11 +16,10 @@
     <header class="header">
         <div class="header-container">
             <div class="logo">
-                <i class="fas fa-gamepad"></i>
+                <i class="fas fa-cube"></i>
                 <span>Retro<span class="highlight">Vault</span></span>
             </div>
 
-            <!-- Barra de búsqueda -->
             <div class="search-wrapper">
                 <i class="fas fa-search search-icon"></i>
                 <input type="text" id="searchInput" placeholder="Buscar juego por título..." />
@@ -37,7 +35,7 @@
             </div>
         </div>
 
-        <!-- Barra de sistemas (multisistema) -->
+        <!-- Barra de sistemas -->
         <nav class="systems-nav">
             <div class="systems-scroll">
                 <button class="system-filter active" data-system="all">
@@ -74,11 +72,11 @@
         </nav>
     </header>
 
-    <!-- ============ HERO / DESTACADO ============ -->
+    <!-- ============ HERO ============ -->
     <section class="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <span class="hero-badge">Preservación Digital</span>
+                <span class="hero-badge"><i class="fas fa-archive"></i> Preservación Digital</span>
                 <h1>Tu museo de videojuegos</h1>
                 <p>Explora, descubre y preserva la historia de los videojuegos. Todas las carátulas, todos los sistemas, un solo lugar.</p>
                 <div class="hero-stats">
@@ -92,7 +90,7 @@
         </div>
     </section>
 
-    <!-- ============ GALERÍA DE JUEGOS ============ -->
+    <!-- ============ GALERÍA ============ -->
     <main class="main-content">
         <div class="gallery-header">
             <h2 id="galleryTitle">Todos los juegos</h2>
@@ -100,10 +98,9 @@
         </div>
 
         <div id="gameGrid" class="game-grid">
-            <!-- Los juegos se renderizan aquí con JavaScript -->
+            <!-- Los juegos se renderizan aquí -->
         </div>
 
-        <!-- Mensaje cuando no hay resultados -->
         <div id="noResults" class="no-results" style="display: none;">
             <i class="fas fa-search"></i>
             <h3>No se encontraron juegos</h3>
@@ -115,7 +112,7 @@
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-section">
-                <h4><i class="fas fa-gamepad"></i> RetroVault</h4>
+                <h4><i class="fas fa-cube"></i> RetroVault</h4>
                 <p>Proyecto de preservación digital de videojuegos. Los enlaces redirigen a fuentes externas.</p>
             </div>
             <div class="footer-section">
@@ -169,7 +166,6 @@
         </div>
     </div>
 
-    <!-- ============ SCRIPTS ============ -->
     <script src="script.js"></script>
 </body>
 </html>
