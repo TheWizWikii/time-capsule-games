@@ -7,8 +7,32 @@
       "año": 2012,
       "genero": "Lucha",
       "desarrolladora": "Capcom",
-      "descripcion": "El crossover definitivo entre dos de las sagas de lucha más importantes.",
+      "descripcion": "El crossover definitivo entre dos de las sagas de lucha más importantes. Street Fighter y Tekken se enfrentan en este épico juego de combate.",
       "cover": "covers/xbox360/street_fighter_x_tekken.jpg",
+      "download": "#",
+      "torrent": "#",
+      "magnet": "#"
+    },
+    {
+      "id": 2,
+      "titulo": "The Evil Within",
+      "año": 2014,
+      "genero": "Survival Horror",
+      "desarrolladora": "Tango Gameworks",
+      "descripcion": "Del creador de Resident Evil, Shinji Mikami. Un terrorífico viaje a través de mentes retorcidas y realidades distorsionadas.",
+      "cover": "covers/xbox360/the_evil_within.jpg",
+      "download": "#",
+      "torrent": "#",
+      "magnet": "#"
+    },
+    {
+      "id": 3,
+      "titulo": "Halo 3",
+      "año": 2007,
+      "genero": "FPS",
+      "desarrolladora": "Bungie",
+      "descripcion": "El épico final de la trilogía original de Halo. El Jefe Maestro enfrenta al Profeta de la Verdad en una batalla por la humanidad.",
+      "cover": "covers/xbox360/halo_3.jpg",
       "download": "#",
       "torrent": "#",
       "magnet": "#"
