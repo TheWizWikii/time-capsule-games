@@ -1,142 +1,98 @@
 // =============================================
-//  BASE DE DATOS DE JUEGOS (MODIFICA AQUÍ)
+//  BASE DE DATOS DE JUEGOS
 // =============================================
-//  - cover: Puedes usar una URL o "covers/nombre.jpg"
-//  - download: Pon "#" si no tienes enlace aún
-//  - sistema: Debe coincidir con los data-system de los filtros
+//  - cover: "covers/nombre.jpg" o URL
+//  - download: "#" si no tienes enlace
+//  - sistema: nes, snes, megadrive, ps1, ps2, gamecube, xbox360, switch, ps5
 // =============================================
 
 const juegos = [
     {
         id: 1,
-        titulo: "Super Mario Bros",
-        sistema: "nes",
-        año: 1985,
-        genero: "Plataformas",
-        desarrolladora: "Nintendo",
-        descripcion: "El clásico juego que revolucionó los plataformas. Mario debe rescatar a la princesa Peach del malvado Bowser.",
-        cover: "https://cdn.thegamesdb.net/images/original/boxart/front/140-1.jpg",  // O usa covers/cover.jpg"
-        download: "#"  // Cambia por tu enlace externo
+        titulo: "Street Fighter X Tekken",
+        sistema: "xbox360",
+        año: 2012,
+        genero: "Lucha",
+        desarrolladora: "Capcom",
+        descripcion: "El crossover definitivo entre dos de las sagas de lucha más importantes. Street Fighter y Tekken se enfrentan en este épico juego de combate.",
+        cover: "covers/street_fighter_x_tekken.jpg",
+        download: "#"
     },
     {
         id: 2,
-        titulo: "The Legend of Zelda",
-        sistema: "snes",
-        año: 1991,
-        genero: "Aventura",
-        desarrolladora: "Nintendo",
-        descripcion: "Una épica aventura en Hyrule. Link debe derrotar a Ganon y salvar a la princesa Zelda.",
-        cover: "covers/zelda_snes.jpg",
+        titulo: "The Evil Within",
+        sistema: "xbox360",
+        año: 2014,
+        genero: "Survival Horror",
+        desarrolladora: "Tango Gameworks",
+        descripcion: "Del creador de Resident Evil, Shinji Mikami. Un terrorífico viaje a través de mentes retorcidas y realidades distorsionadas.",
+        cover: "covers/the_evil_within.jpg",
         download: "#"
     },
     {
         id: 3,
-        titulo: "Sonic the Hedgehog 2",
-        sistema: "megadrive",
-        año: 1992,
-        genero: "Plataformas",
-        desarrolladora: "Sega",
-        descripcion: "Sonic corre a toda velocidad para detener al Dr. Robotnik. Con Tails como compañero.",
-        cover: "covers/sonic_2.jpg",
+        titulo: "Dead or Alive 5 Last Round",
+        sistema: "xbox360",
+        año: 2015,
+        genero: "Lucha",
+        desarrolladora: "Koei Tecmo",
+        descripcion: "La entrega definitiva de la saga Dead or Alive con gráficos mejorados, nuevos personajes y mecánicas de combate refinadas.",
+        cover: "covers/doa5_last_round.jpg",
         download: "#"
     },
     {
         id: 4,
-        titulo: "Final Fantasy VII",
-        sistema: "ps1",
-        año: 1997,
-        genero: "RPG",
-        desarrolladora: "Square",
-        descripcion: "Un clásico del RPG. Cloud y sus aliados luchan contra la corporación Shinra y Sephiroth.",
-        cover: "covers/ff7.jpg",
+        titulo: "Ninety-Nine Nights 2",
+        sistema: "xbox360",
+        año: 2010,
+        genero: "Hack and Slash",
+        desarrolladora: "Q Entertainment",
+        descripcion: "Secuela del épico juego de acción con batallas masivas contra cientos de enemigos. Una historia de fantasía oscura.",
+        cover: "covers/ninety_nine_nights_2.jpg",
         download: "#"
     },
     {
         id: 5,
-        titulo: "God of War II",
-        sistema: "ps2",
-        año: 2007,
-        genero: "Acción",
-        desarrolladora: "Santa Monica Studio",
-        descripcion: "Kratos continúa su venganza contra los dioses del Olimpo en esta espectacular aventura.",
-        cover: "covers/gow2.jpg",
-        download: "#"
-    },
-    {
-        id: 6,
-        titulo: "The Legend of Zelda: The Wind Waker",
-        sistema: "gamecube",
-        año: 2002,
-        genero: "Aventura",
-        desarrolladora: "Nintendo",
-        descripcion: "Link explora un océano infinito en un estilo visual cel-shading único y encantador.",
-        cover: "covers/wind_waker.jpg",
-        download: "#"
-    },
-    {
-        id: 7,
         titulo: "Halo 3",
         sistema: "xbox360",
         año: 2007,
         genero: "FPS",
         desarrolladora: "Bungie",
-        descripcion: "El épico final de la trilogía original de Halo. El Jefe Maestro enfrenta al Profeta de la Verdad.",
+        descripcion: "El épico final de la trilogía original de Halo. El Jefe Maestro enfrenta al Profeta de la Verdad en una batalla por la humanidad.",
         cover: "covers/halo_3.jpg",
         download: "#"
     },
     {
+        id: 6,
+        titulo: "Gears of War 3",
+        sistema: "xbox360",
+        año: 2011,
+        genero: "TPS",
+        desarrolladora: "Epic Games",
+        descripcion: "La conclusión de la trilogía original de Gears. Marcus Fenix y su equipo luchan contra la amenaza Locust y la nueva Lambent.",
+        cover: "covers/gears_of_war_3.jpg",
+        download: "#"
+    },
+    {
+        id: 7,
+        titulo: "Forza Horizon",
+        sistema: "xbox360",
+        año: 2012,
+        genero: "Carreras",
+        desarrolladora: "Playground Games",
+        descripcion: "El primer Horizon, un festival de carreras en mundo abierto con una selección increíble de coches y paisajes de ensueño.",
+        cover: "covers/forza_horizon.jpg",
+        download: "#"
+    },
+    {
         id: 8,
-        titulo: "The Legend of Zelda: Breath of the Wild",
-        sistema: "switch",
-        año: 2017,
-        genero: "Aventura",
-        desarrolladora: "Nintendo",
-        descripcion: "Un mundo abierto sin precedentes en la saga. Link despierta tras 100 años para derrotar a Ganon.",
-        cover: "covers/botw.jpg",
-        download: "#"
-    },
-    {
-        id: 9,
-        titulo: "God of War Ragnarök",
-        sistema: "ps5",
-        año: 2022,
-        genero: "Acción",
-        desarrolladora: "Santa Monica Studio",
-        descripcion: "Kratos y Atreus se enfrentan al Ragnarök en un viaje emocional y épico por los nueve reinos.",
-        cover: "covers/ragnarok.jpg",
-        download: "#"
-    },
-    {
-        id: 10,
-        titulo: "Donkey Kong Country",
-        sistema: "snes",
-        año: 1994,
-        genero: "Plataformas",
-        desarrolladora: "Rare",
-        descripcion: "Donkey Kong y Diddy Kong deben recuperar su plátano robado por los Kremlings.",
-        cover: "covers/dkc.jpg",
-        download: "#"
-    },
-    {
-        id: 11,
-        titulo: "Mega Man X",
-        sistema: "snes",
-        año: 1993,
-        genero: "Acción",
-        desarrolladora: "Capcom",
-        descripcion: "X, un reploid avanzado, lucha contra los Mavericks en este clásico de acción y plataformas.",
-        cover: "covers/mega_man_x.jpg",
-        download: "#"
-    },
-    {
-        id: 12,
-        titulo: "Shadow of the Colossus",
-        sistema: "ps2",
-        año: 2005,
-        genero: "Aventura",
-        desarrolladora: "Team Ico",
-        descripcion: "Un joven debe derrotar a 16 colosos para revivir a una chica. Una obra maestra atmosférica.",
-        cover: "covers/sotc.jpg",
+        titulo: "Red Dead Redemption",
+        sistema: "xbox360",
+        año: 2010,
+        genero: "Acción-Aventura",
+        desarrolladora: "Rockstar Games",
+        descripcion: "El Oeste americano cobra vida en esta obra maestra de Rockstar. John Marston busca redención en un mundo que se desvanece.",
+        cover: "covers/red_dead_redemption.jpg",
         download: "#"
     }
 ];
@@ -144,10 +100,9 @@ const juegos = [
 // =============================================
 //  ESTADO DE LA APLICACIÓN
 // =============================================
-let filtroSistema = 'all';
+let filtroSistema = 'xbox360';  // Por defecto Xbox 360 como en la imagen
 let busqueda = '';
-let vista = 'grid';  // 'grid' o 'list'
-let juegoSeleccionado = null;
+let vista = 'grid';
 
 // =============================================
 //  REFERENCIAS AL DOM
@@ -169,6 +124,7 @@ const modalGenre = document.getElementById('modalGenre');
 const modalDeveloper = document.getElementById('modalDeveloper');
 const modalDescription = document.getElementById('modalDescription');
 const modalDownloadBtn = document.getElementById('modalDownloadBtn');
+const modalSystemBadge = document.getElementById('modalSystemBadge');
 
 // =============================================
 //  FUNCIONES AUXILIARES
@@ -213,6 +169,21 @@ function getNombreSistema(sistema) {
     return mapa[sistema] || sistema;
 }
 
+function getNombreSistemaUpper(sistema) {
+    const mapa = {
+        'nes': 'NES',
+        'snes': 'SNES',
+        'megadrive': 'MEGA DRIVE',
+        'ps1': 'PS1',
+        'ps2': 'PS2',
+        'gamecube': 'GAMECUBE',
+        'xbox360': 'XBOX 360',
+        'switch': 'SWITCH',
+        'ps5': 'PS5'
+    };
+    return mapa[sistema] || sistema.toUpperCase();
+}
+
 // =============================================
 //  RENDERIZADO DE JUEGOS
 // =============================================
@@ -223,16 +194,13 @@ function renderizarJuegos() {
         return coincideSistema && coincideBusqueda;
     });
 
-    // Actualizar contador y título
     gamesCount.textContent = `${filtrados.length} juegos`;
     if (filtroSistema === 'all') {
         galleryTitle.textContent = 'Todos los juegos';
     } else {
-        const nombre = getNombreSistema(filtroSistema);
-        galleryTitle.textContent = `${nombre} (${filtrados.length})`;
+        galleryTitle.textContent = getNombreSistemaUpper(filtroSistema);
     }
 
-    // Mostrar u ocultar mensaje de no resultados
     if (filtrados.length === 0) {
         grid.innerHTML = '';
         noResults.style.display = 'block';
@@ -240,7 +208,6 @@ function renderizarJuegos() {
     }
     noResults.style.display = 'none';
 
-    // Construir HTML
     const html = filtrados.map(j => `
         <div class="game-card" data-id="${j.id}" onclick="abrirModal(${j.id})">
             <div class="card-cover">
@@ -248,19 +215,15 @@ function renderizarJuegos() {
                     `<img src="${j.cover}" alt="${j.titulo}" loading="lazy" />` : 
                     `<div class="no-cover"><i class="fas fa-image"></i></div>`
                 }
+                <div class="card-system-badge">
+                    <i class="fab fa-xbox"></i> ${getNombreSistemaUpper(j.sistema)}
+                </div>
             </div>
             <div class="card-info">
                 <div class="card-title">${j.titulo}</div>
-                <div class="card-system">
+                <div class="card-subtitle">
                     <i class="fas ${getIconoSistema(j.sistema)}"></i> ${getNombreSistema(j.sistema)}
                 </div>
-            </div>
-            <div class="card-overlay">
-                <div class="overlay-title">${j.titulo}</div>
-                <div class="overlay-meta">${getNombreSistema(j.sistema)} • ${j.año}</div>
-                <a href="${j.download}" target="_blank" class="btn-download" onclick="event.stopPropagation();">
-                    <i class="fas fa-external-link-alt"></i> Enlace
-                </a>
             </div>
         </div>
     `).join('');
@@ -276,7 +239,6 @@ function abrirModal(id) {
     const juego = juegos.find(j => j.id === id);
     if (!juego) return;
 
-    juegoSeleccionado = juego;
     modalCover.src = juego.cover || '';
     modalCover.alt = juego.titulo;
     modalTitle.textContent = juego.titulo;
@@ -288,12 +250,13 @@ function abrirModal(id) {
     modalDownloadBtn.href = juego.download || '#';
     modalDownloadBtn.textContent = juego.download && juego.download !== '#' ? 'Visitar enlace externo' : 'Enlace no disponible';
     if (!juego.download || juego.download === '#') {
-        modalDownloadBtn.style.opacity = '0.6';
+        modalDownloadBtn.style.opacity = '0.5';
         modalDownloadBtn.style.pointerEvents = 'none';
     } else {
         modalDownloadBtn.style.opacity = '1';
         modalDownloadBtn.style.pointerEvents = 'auto';
     }
+    modalSystemBadge.innerHTML = `<i class="${getIconoSistema(juego.sistema)}"></i> ${getNombreSistemaUpper(juego.sistema)}`;
 
     modal.classList.add('open');
     document.body.style.overflow = 'hidden';
@@ -308,12 +271,10 @@ function closeModal() {
     cerrarModal();
 }
 
-// Cerrar modal con ESC
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') cerrarModal();
 });
 
-// Cerrar modal clic fuera
 modal.addEventListener('click', (e) => {
     if (e.target === modal) cerrarModal();
 });
@@ -337,6 +298,20 @@ searchInput.addEventListener('input', function() {
     renderizarJuegos();
 });
 
+// Botón de búsqueda
+document.querySelector('.search-btn').addEventListener('click', function() {
+    busqueda = searchInput.value.trim();
+    renderizarJuegos();
+});
+
+// Enter en el campo de búsqueda
+searchInput.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') {
+        busqueda = this.value.trim();
+        renderizarJuegos();
+    }
+});
+
 // =============================================
 //  CAMBIO DE VISTA
 // =============================================
@@ -357,5 +332,14 @@ document.getElementById('listViewBtn').addEventListener('click', function() {
 // =============================================
 //  INICIALIZACIÓN
 // =============================================
+// Activar filtro por defecto Xbox 360
+document.querySelectorAll('.system-filter').forEach(btn => {
+    if (btn.dataset.system === 'xbox360') {
+        btn.classList.add('active');
+    } else {
+        btn.classList.remove('active');
+    }
+});
+
 actualizarStats();
 renderizarJuegos();
