@@ -5,6 +5,54 @@
       "nombre": "Xbox 360",
       "icono": "fa-xbox",
       "archivo": "xbox360.json"
+    },
+    {
+      "id": "nes",
+      "nombre": "NES",
+      "icono": "fa-gamepad",
+      "archivo": "nes.json"
+    },
+    {
+      "id": "snes",
+      "nombre": "SNES",
+      "icono": "fa-gamepad",
+      "archivo": "snes.json"
+    },
+    {
+      "id": "megadrive",
+      "nombre": "Mega Drive",
+      "icono": "fa-gamepad",
+      "archivo": "megadrive.json"
+    },
+    {
+      "id": "ps1",
+      "nombre": "PS1",
+      "icono": "fa-gamepad",
+      "archivo": "ps1.json"
+    },
+    {
+      "id": "ps2",
+      "nombre": "PS2",
+      "icono": "fa-gamepad",
+      "archivo": "ps2.json"
+    },
+    {
+      "id": "gamecube",
+      "nombre": "GameCube",
+      "icono": "fa-gamepad",
+      "archivo": "gamecube.json"
+    },
+    {
+      "id": "switch",
+      "nombre": "Switch",
+      "icono": "fa-gamepad",
+      "archivo": "switch.json"
+    },
+    {
+      "id": "ps5",
+      "nombre": "PS5",
+      "icono": "fa-gamepad",
+      "archivo": "ps5.json"
     }
   ]
 }
