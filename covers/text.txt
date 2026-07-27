@@ -1,1 +1,18 @@
-hola
+
+## 🚀 Cómo añadir un juego
+
+1. Abre `script.js`
+2. Busca el array `juegos` y añade un nuevo objeto con esta estructura:
+
+```javascript
+{
+    id: 13,                      // Número único
+    titulo: "Nombre del Juego",
+    sistema: "snes",             // nes, snes, megadrive, ps1, ps2, gamecube, xbox360, switch, ps5
+    año: 1990,
+    genero: "Plataformas",
+    desarrolladora: "Nintendo",
+    descripcion: "Breve descripción del juego.",
+    cover: "covers/mi_cover.jpg", // O URL completa
+    download: "https://enlace-externo.com/juego"  // O "#" si no tienes
+}
