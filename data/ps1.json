@@ -1,0 +1,29 @@
+{
+  "sistema": "ps1",
+  "juegos": [
+    {
+      "id": 401,
+      "titulo": "Final Fantasy VII",
+      "año": 1997,
+      "genero": "RPG",
+      "desarrolladora": "Square",
+      "descripcion": "El RPG que cambió la historia de los videojuegos. Cloud y sus aliados luchan contra Shinra y Sephiroth.",
+      "cover": "covers/ps1/ff7.jpg",
+      "download": "#",
+      "torrent": "#",
+      "magnet": "#"
+    },
+    {
+      "id": 402,
+      "titulo": "Metal Gear Solid",
+      "año": 1998,
+      "genero": "Stealth",
+      "desarrolladora": "Konami",
+      "descripcion": "La obra maestra de Hideo Kojima. Solid Snake infiltra la base de Shadow Moses.",
+      "cover": "covers/ps1/mgs.jpg",
+      "download": "#",
+      "torrent": "#",
+      "magnet": "#"
+    }
+  ]
+}
