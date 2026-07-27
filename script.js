@@ -8,6 +8,7 @@ let filtroSistema = 'xbox360';
 let busqueda = '';
 let vista = 'grid';
 let cargando = true;
+let ordenAlfabetico = false;
 
 // =============================================
 //  PAGINACIÓN
@@ -26,6 +27,7 @@ const gamesCount = document.getElementById('gamesCount');
 const totalGamesSpan = document.getElementById('totalGames');
 const totalSystemsSpan = document.getElementById('totalSystems');
 const systemSelect = document.getElementById('systemSelect');
+const sortCheckbox = document.getElementById('sortAlphabetical');
 
 // Controles de paginación
 const paginacionContainer = document.getElementById('paginacion');
@@ -251,14 +253,28 @@ function getNombreSistema(sistemaId) {
 }
 
 // =============================================
+//  FUNCIÓN PARA ORDENAR JUEGOS
+// =============================================
+function ordenarJuegos(juegos) {
+    if (ordenAlfabetico) {
+        return [...juegos].sort((a, b) => 
+            a.titulo.localeCompare(b.titulo, 'es', { sensitivity: 'base' })
+        );
+    }
+    return juegos;
+}
+
+// =============================================
 //  OBTENER JUEGOS FILTRADOS
 // =============================================
 function getJuegosFiltrados() {
-    return todosLosJuegos.filter(j => {
+    const filtrados = todosLosJuegos.filter(j => {
         const coincideSistema = filtroSistema === 'all' || j.sistema === filtroSistema;
         const coincideBusqueda = j.titulo.toLowerCase().includes(busqueda.toLowerCase());
         return coincideSistema && coincideBusqueda;
     });
+    
+    return ordenarJuegos(filtrados);
 }
 
 // =============================================
@@ -271,18 +287,15 @@ function renderizarJuegos() {
     const totalJuegos = filtrados.length;
     const totalPaginas = Math.ceil(totalJuegos / JUEGOS_POR_PAGINA);
     
-    // Asegurar que la página actual sea válida
     if (paginaActual > totalPaginas && totalPaginas > 0) {
         paginaActual = totalPaginas;
     }
     if (paginaActual < 1) paginaActual = 1;
     
-    // Calcular índices
     const inicio = (paginaActual - 1) * JUEGOS_POR_PAGINA;
     const fin = Math.min(inicio + JUEGOS_POR_PAGINA, totalJuegos);
     const juegosPagina = filtrados.slice(inicio, fin);
     
-    // Actualizar contador y título
     gamesCount.textContent = `${totalJuegos} juegos`;
     if (filtroSistema === 'all') {
         galleryTitle.textContent = 'TODOS LOS JUEGOS';
@@ -290,7 +303,6 @@ function renderizarJuegos() {
         galleryTitle.textContent = getNombreSistemaUpper(filtroSistema);
     }
     
-    // Mostrar/ocultar paginación
     if (paginacionContainer) {
         if (totalJuegos > JUEGOS_POR_PAGINA) {
             paginacionContainer.style.display = 'flex';
@@ -300,7 +312,6 @@ function renderizarJuegos() {
         }
     }
     
-    // No hay resultados
     if (totalJuegos === 0) {
         grid.innerHTML = '';
         noResults.style.display = 'block';
@@ -309,7 +320,6 @@ function renderizarJuegos() {
     }
     noResults.style.display = 'none';
     
-    // Renderizar juegos de la página actual
     const html = juegosPagina.map(j => `
         <div class="game-card" data-id="${j.id}" onclick="abrirModal(${j.id})">
             <div class="card-cover">
@@ -353,7 +363,6 @@ function irPagina(pagina) {
     if (pagina < 1 || pagina > totalPaginas) return;
     paginaActual = pagina;
     renderizarJuegos();
-    // Scroll al principio de la galería
     document.querySelector('.main-content').scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
@@ -369,6 +378,17 @@ function paginaSiguiente() {
     if (paginaActual < totalPaginas) {
         irPagina(paginaActual + 1);
     }
+}
+
+// =============================================
+//  EVENTO DEL CHECKBOX (orden alfabético)
+// =============================================
+if (sortCheckbox) {
+    sortCheckbox.addEventListener('change', function() {
+        ordenAlfabetico = this.checked;
+        paginaActual = 1;
+        renderizarJuegos();
+    });
 }
 
 // =============================================
