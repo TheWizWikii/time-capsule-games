@@ -15,7 +15,7 @@ const juegos = [
         genero: "Lucha",
         desarrolladora: "Capcom",
         descripcion: "El crossover definitivo entre dos de las sagas de lucha más importantes. Street Fighter y Tekken se enfrentan en este épico juego de combate.",
-        cover: "https://cdn.thegamesdb.net/images/original/boxart/front/13386-1.jpg",
+        cover: "covers/street_fighter_x_tekken.jpg",
         download: "#"
     },
     {
@@ -100,7 +100,7 @@ const juegos = [
 // =============================================
 //  ESTADO DE LA APLICACIÓN
 // =============================================
-let filtroSistema = 'xbox360';  // Por defecto Xbox 360 como en la imagen
+let filtroSistema = 'xbox360';  // Xbox 360 por defecto
 let busqueda = '';
 let vista = 'grid';
 
@@ -124,7 +124,6 @@ const modalGenre = document.getElementById('modalGenre');
 const modalDeveloper = document.getElementById('modalDeveloper');
 const modalDescription = document.getElementById('modalDescription');
 const modalDownloadBtn = document.getElementById('modalDownloadBtn');
-const modalSystemBadge = document.getElementById('modalSystemBadge');
 
 // =============================================
 //  FUNCIONES AUXILIARES
@@ -196,7 +195,7 @@ function renderizarJuegos() {
 
     gamesCount.textContent = `${filtrados.length} juegos`;
     if (filtroSistema === 'all') {
-        galleryTitle.textContent = 'Todos los juegos';
+        galleryTitle.textContent = 'TODOS LOS JUEGOS';
     } else {
         galleryTitle.textContent = getNombreSistemaUpper(filtroSistema);
     }
@@ -215,9 +214,7 @@ function renderizarJuegos() {
                     `<img src="${j.cover}" alt="${j.titulo}" loading="lazy" />` : 
                     `<div class="no-cover"><i class="fas fa-image"></i></div>`
                 }
-                <div class="card-system-badge">
-                    <i class="fab fa-xbox"></i> ${getNombreSistemaUpper(j.sistema)}
-                </div>
+                <!-- SIN ETIQUETA DEL SISTEMA -->
             </div>
             <div class="card-info">
                 <div class="card-title">${j.titulo}</div>
@@ -256,7 +253,6 @@ function abrirModal(id) {
         modalDownloadBtn.style.opacity = '1';
         modalDownloadBtn.style.pointerEvents = 'auto';
     }
-    modalSystemBadge.innerHTML = `<i class="${getIconoSistema(juego.sistema)}"></i> ${getNombreSistemaUpper(juego.sistema)}`;
 
     modal.classList.add('open');
     document.body.style.overflow = 'hidden';
@@ -298,13 +294,11 @@ searchInput.addEventListener('input', function() {
     renderizarJuegos();
 });
 
-// Botón de búsqueda
 document.querySelector('.search-btn').addEventListener('click', function() {
     busqueda = searchInput.value.trim();
     renderizarJuegos();
 });
 
-// Enter en el campo de búsqueda
 searchInput.addEventListener('keydown', function(e) {
     if (e.key === 'Enter') {
         busqueda = this.value.trim();
@@ -332,7 +326,7 @@ document.getElementById('listViewBtn').addEventListener('click', function() {
 // =============================================
 //  INICIALIZACIÓN
 // =============================================
-// Activar filtro por defecto Xbox 360
+// Aseguramos que el filtro Xbox 360 esté activo
 document.querySelectorAll('.system-filter').forEach(btn => {
     if (btn.dataset.system === 'xbox360') {
         btn.classList.add('active');
