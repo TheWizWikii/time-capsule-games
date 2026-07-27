@@ -70,7 +70,15 @@
     <main class="main-content">
         <div class="gallery-header">
             <h2 id="galleryTitle">Cargando...</h2>
-            <span id="gamesCount" class="games-count">0 juegos</span>
+            <div class="gallery-controls">
+                <span id="gamesCount" class="games-count">0 juegos</span>
+                <!-- CHECKBOX ORDEN ALFABÉTICO -->
+                <label class="sort-toggle" title="Ordenar juegos alfabéticamente">
+                    <input type="checkbox" id="sortAlphabetical" />
+                    <span class="toggle-slider"></span>
+                    <span class="toggle-label"><i class="fas fa-sort-alpha-down"></i> A-Z</span>
+                </label>
+            </div>
         </div>
 
         <div id="gameGrid" class="game-grid">
@@ -83,9 +91,7 @@
             <p>Prueba con otro término de búsqueda o filtro.</p>
         </div>
 
-        <!-- ============================================================ -->
-        <!--  PAGINACIÓN  (NUEVO)                                          -->
-        <!-- ============================================================ -->
+        <!-- ===== PAGINACIÓN ===== -->
         <div id="paginacion" class="paginacion" style="display: none;">
             <div class="paginacion-contenedor">
                 <button id="prevPage" class="paginacion-btn" onclick="paginaAnterior()" disabled>
