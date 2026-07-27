@@ -20,6 +20,8 @@
     --shadow: 0 8px 40px rgba(0, 0, 0, 0.7);
     --radius: 12px;
     --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --color-torrent: #ff6b35;
+    --color-magnet: #6c5ce7;
 }
 
 body {
@@ -208,14 +210,14 @@ a {
     font-weight: 500;
 }
 
-/* ===== GAME GRID - PORTADAS ENORMES ===== */
+/* ===== GAME GRID ===== */
 .game-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
     gap: 28px;
 }
 
-/* ===== GAME CARD - PORTADA GIGANTE ===== */
+/* ===== GAME CARD ===== */
 .game-card {
     background: var(--bg-card);
     border-radius: var(--radius);
@@ -232,7 +234,6 @@ a {
     background: var(--bg-card-hover);
 }
 
-/* Carátula - OCUPA CASI TODO EL ESPACIO */
 .game-card .card-cover {
     width: 100%;
     aspect-ratio: 2.5 / 3.5;
@@ -255,13 +256,12 @@ a {
     opacity: 0.2;
 }
 
-/* SIN ETIQUETA DEL SISTEMA - ELIMINADA */
-
-/* Info inferior - pequeña y discreta */
+/* ===== TÍTULO CENTRADO Y SIN SUBTÍTULO ===== */
 .game-card .card-info {
     padding: 12px 16px 14px;
     background: var(--bg-card);
     transition: var(--transition);
+    text-align: center; /* Título centrado */
 }
 .game-card:hover .card-info {
     background: var(--bg-card-hover);
@@ -270,28 +270,14 @@ a {
 .game-card .card-title {
     font-size: 15px;
     font-weight: 700;
-    margin-bottom: 2px;
+    margin-bottom: 0; /* Sin margen inferior */
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     letter-spacing: -0.2px;
 }
-.game-card .card-subtitle {
-    font-size: 12px;
-    color: var(--text-muted);
-    font-weight: 500;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-}
-.game-card .card-subtitle i {
-    font-size: 11px;
-}
 
-/* Overlay - ELIMINADO (sin botones en hover) */
-.game-card .card-overlay {
-    display: none;
-}
+/* ELIMINADO: .card-subtitle ya no se usa */
 
 /* ===== LIST VIEW ===== */
 .game-grid.list-view {
@@ -317,6 +303,7 @@ a {
     flex-direction: column;
     justify-content: center;
     padding: 14px 20px;
+    text-align: left;
 }
 .game-grid.list-view .game-card .card-info .card-title {
     white-space: normal;
@@ -363,7 +350,7 @@ a {
     border-radius: var(--radius);
     max-width: 920px;
     width: 100%;
-    max-height: 90vh;
+    max-height: 92vh;
     overflow-y: auto;
     border: 1px solid var(--border-color);
     box-shadow: var(--shadow);
@@ -433,30 +420,107 @@ a {
     flex: 1;
     line-height: 1.7;
 }
+
+/* ===== 3 BOTONES DE DESCARGA ===== */
 .modal-actions {
     display: flex;
     flex-wrap: wrap;
     gap: 12px;
-    margin-top: 16px;
+    margin-top: 8px;
 }
-.btn-primary {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
+
+/* Botón Descarga Directa (amarillo/azul) */
+.btn-download {
     background: var(--accent);
     color: #000;
     font-weight: 700;
-    padding: 12px 28px;
+    padding: 10px 24px;
     border-radius: 8px;
     transition: var(--transition);
     border: none;
-    font-size: 15px;
+    font-size: 14px;
     cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+    min-width: 140px;
+    justify-content: center;
 }
-.btn-primary:hover {
+.btn-download:hover {
     opacity: 0.85;
     transform: scale(1.02);
 }
+.btn-download[disabled],
+.btn-download.disabled {
+    opacity: 0.4;
+    pointer-events: none;
+    cursor: not-allowed;
+}
+
+/* Botón Torrent (naranja) */
+.btn-torrent {
+    background: var(--color-torrent);
+    color: #fff;
+    font-weight: 700;
+    padding: 10px 24px;
+    border-radius: 8px;
+    transition: var(--transition);
+    border: none;
+    font-size: 14px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+    min-width: 140px;
+    justify-content: center;
+}
+.btn-torrent:hover {
+    opacity: 0.85;
+    transform: scale(1.02);
+}
+.btn-torrent[disabled],
+.btn-torrent.disabled {
+    opacity: 0.4;
+    pointer-events: none;
+    cursor: not-allowed;
+}
+
+/* Botón Magnet (morado) */
+.btn-magnet {
+    background: var(--color-magnet);
+    color: #fff;
+    font-weight: 700;
+    padding: 10px 24px;
+    border-radius: 8px;
+    transition: var(--transition);
+    border: none;
+    font-size: 14px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+    min-width: 140px;
+    justify-content: center;
+}
+.btn-magnet:hover {
+    opacity: 0.85;
+    transform: scale(1.02);
+}
+.btn-magnet[disabled],
+.btn-magnet.disabled {
+    opacity: 0.4;
+    pointer-events: none;
+    cursor: not-allowed;
+}
+
+/* Botón Cerrar (fuera del flex) */
+.modal-close-wrapper {
+    margin-top: 12px;
+}
+
 .btn-secondary {
     display: inline-flex;
     align-items: center;
@@ -464,19 +528,20 @@ a {
     background: transparent;
     color: var(--text-secondary);
     border: 1px solid var(--border-color);
-    padding: 12px 24px;
+    padding: 10px 24px;
     border-radius: 8px;
     transition: var(--transition);
-    font-size: 15px;
+    font-size: 14px;
     cursor: pointer;
 }
 .btn-secondary:hover {
     border-color: var(--text-secondary);
     color: var(--text-primary);
 }
+
 .modal-preservation {
-    margin-top: 20px;
-    padding-top: 16px;
+    margin-top: 16px;
+    padding-top: 14px;
     border-top: 1px solid var(--border-color);
     font-size: 13px;
     color: var(--text-muted);
@@ -597,10 +662,17 @@ a {
     .modal-actions {
         flex-direction: column;
     }
-    .btn-primary,
+    .btn-download,
+    .btn-torrent,
+    .btn-magnet {
+        flex: 1 1 100%;
+        min-width: auto;
+        justify-content: center;
+    }
     .btn-secondary {
         justify-content: center;
         text-align: center;
+        width: 100%;
     }
 }
 
