@@ -1,126 +1,13 @@
 // =============================================
-//  BASE DE DATOS DE JUEGOS
-// =============================================
-//  - cover: "covers/nombre.jpg" o URL
-//  - download: "#" si no tienes enlace
-//  - torrent: "#" si no tienes enlace torrent
-//  - magnet: "#" si no tienes enlace magnet
-//  - sistema: nes, snes, megadrive, ps1, ps2, gamecube, xbox360, switch, ps5
-// =============================================
-
-const juegos = [
-    {
-        id: 1,
-        titulo: "Street Fighter X Tekken",
-        sistema: "xbox360",
-        año: 2012,
-        genero: "Lucha",
-        desarrolladora: "Capcom",
-        descripcion: "El crossover definitivo entre dos de las sagas de lucha más importantes. Street Fighter y Tekken se enfrentan en este épico juego de combate.",
-        cover: "https://cdn.thegamesdb.net/images/original/boxart/front/13386-1.jpg",
-        download: "#",      // Enlace directo
-        torrent: "https://minerva-archive.org/assets/Minerva_Myrient_v0.3/Minerva_Myrient%20-%20Redump%20-%20Microsoft%20-%20Xbox%20360.torrent",       // Enlace .torrent
-        magnet: "magnet:?xt=urn:btih:c98fbaa2a36ee48e3d9423be02cdbefd9281bc7d&dn=Minerva_Myrient&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2F9.rarbg.com%3A2810%2Fannounce&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A6969%2Fannounce&tr=http%3A%2F%2Ftracker.openbittorrent.com%3A80%2Fannounce&tr=http%3A%2F%2F95.107.48.115%3A80%2Fannounce&tr=http%3A%2F%2Fopen.acgnxtracker.com%3A80%2Fannounce&tr=http%3A%2F%2Ft.acg.rip%3A6699%2Fannounce&tr=http%3A%2F%2Ft.nyaatracker.com%3A80%2Fannounce&tr=http%3A%2F%2Ftracker.bt4g.com%3A2095%2Fannounce&tr=http%3A%2F%2Ftracker.files.fm%3A6969%2Fannounce&tr=http%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=http%3A%2F%2Fvps02.net.orel.ru%3A80%2Fannounce&tr=https%3A%2F%2F1337.abcvg.info%3A443%2Fannounce&tr=https%3A%2F%2Fopentracker.i2p.rocks%3A443%2Fannounce&tr=https%3A%2F%2Ftracker.nanoha.org%3A443%2Fannounce&tr=https%3A%2F%2Ftracker.sloppyta.co%3A443%2Fannounce&tr=udp%3A%2F%2F208.83.20.20%3A6969%2Fannounce&tr=udp%3A%2F%2F37.235.174.46%3A2710%2Fannounce&tr=udp%3A%2F%2F75.127.14.224%3A2710%2Fannounce&tr=udp%3A%2F%2Fexodus.desync.com%3A6969%2Fannounce&tr=udp%3A%2F%2Fexplodie.org%3A6969%2Fannounce&tr=udp%3A%2F%2Ffe.dealclub.de%3A6969%2Fannounce&tr=udp%3A%2F%2Fipv4.tracker.harry.lu%3A80%2Fannounce&tr=udp%3A%2F%2Fmovies.zsw.ca%3A6969%2Fannounce&tr=udp%3A%2F%2Fopen.demonii.com%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&tr=udp%3A%2F%2Fopentracker.i2p.rocks%3A6969%2Fannounce&tr=udp%3A%2F%2Fp4p.arenabg.com%3A1337%2Fannounce&tr=udp%3A%2F%2Fpublic.tracker.vraphim.com%3A6969%2Fannounce&tr=udp%3A%2F%2Fretracker.lanta-net.ru%3A2710%2Fannounce&tr=udp%3A%2F%2Ftracker.0x.tf%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.dler.org%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.filemail.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.moeking.me%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.pomf.se%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.swateam.org.uk%3A2710%2Fannounce&tr=udp%3A%2F%2Ftracker.tiny-vps.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce&tr=https%3A%2F%2Ftracker1.ctix.cn%3A443%2Fannounce&tr=https%3A%2F%2Ftracker.loligirl.cn%3A443%2Fannounce&tr=udp%3A%2F%2Ftracker-udp.gbitt.info%3A80%2Fannounce&tr=https%3A%2F%2Ftracker.gbitt.info%3A443%2Fannounce&tr=http%3A%2F%2Ftracker.gbitt.info%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.therarbg.to%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.therarbg.com%3A6969%2Fannounce&tr=udp%3A%2F%2Fopentracker.io%3A6969%2Fannounce&tr=udp%3A%2F%2Fnew-line.net%3A6969%2Fannounce&tr=udp%3A%2F%2Fmoonburrow.club%3A6969%2Fannounce&tr=udp%3A%2F%2Fepider.me%3A6969%2Fannounce&tr=udp%3A%2F%2Fbt1.archive.org%3A6969%2Fannounce&tr=udp%3A%2F%2Fbt.ktrackers.com%3A6666%2Fannounce&so=3759"         // Enlace magnet
-    },
-    {
-        id: 2,
-        titulo: "The Evil Within",
-        sistema: "xbox360",
-        año: 2014,
-        genero: "Survival Horror",
-        desarrolladora: "Tango Gameworks",
-        descripcion: "Del creador de Resident Evil, Shinji Mikami. Un terrorífico viaje a través de mentes retorcidas y realidades distorsionadas.",
-        cover: "covers/the_evil_within.jpg",
-        download: "#",
-        torrent: "#",
-        magnet: "#"
-    },
-    {
-        id: 3,
-        titulo: "Dead or Alive 5 Last Round",
-        sistema: "xbox360",
-        año: 2015,
-        genero: "Lucha",
-        desarrolladora: "Koei Tecmo",
-        descripcion: "La entrega definitiva de la saga Dead or Alive con gráficos mejorados, nuevos personajes y mecánicas de combate refinadas.",
-        cover: "covers/doa5_last_round.jpg",
-        download: "#",
-        torrent: "#",
-        magnet: "#"
-    },
-    {
-        id: 4,
-        titulo: "Ninety-Nine Nights 2",
-        sistema: "xbox360",
-        año: 2010,
-        genero: "Hack and Slash",
-        desarrolladora: "Q Entertainment",
-        descripcion: "Secuela del épico juego de acción con batallas masivas contra cientos de enemigos. Una historia de fantasía oscura.",
-        cover: "covers/ninety_nine_nights_2.jpg",
-        download: "#",
-        torrent: "#",
-        magnet: "#"
-    },
-    {
-        id: 5,
-        titulo: "Halo 3",
-        sistema: "xbox360",
-        año: 2007,
-        genero: "FPS",
-        desarrolladora: "Bungie",
-        descripcion: "El épico final de la trilogía original de Halo. El Jefe Maestro enfrenta al Profeta de la Verdad en una batalla por la humanidad.",
-        cover: "covers/halo_3.jpg",
-        download: "#",
-        torrent: "#",
-        magnet: "#"
-    },
-    {
-        id: 6,
-        titulo: "Gears of War 3",
-        sistema: "xbox360",
-        año: 2011,
-        genero: "TPS",
-        desarrolladora: "Epic Games",
-        descripcion: "La conclusión de la trilogía original de Gears. Marcus Fenix y su equipo luchan contra la amenaza Locust y la nueva Lambent.",
-        cover: "covers/gears_of_war_3.jpg",
-        download: "#",
-        torrent: "#",
-        magnet: "#"
-    },
-    {
-        id: 7,
-        titulo: "Forza Horizon",
-        sistema: "xbox360",
-        año: 2012,
-        genero: "Carreras",
-        desarrolladora: "Playground Games",
-        descripcion: "El primer Horizon, un festival de carreras en mundo abierto con una selección increíble de coches y paisajes de ensueño.",
-        cover: "covers/forza_horizon.jpg",
-        download: "#",
-        torrent: "#",
-        magnet: "#"
-    },
-    {
-        id: 8,
-        titulo: "Red Dead Redemption",
-        sistema: "xbox360",
-        año: 2010,
-        genero: "Acción-Aventura",
-        desarrolladora: "Rockstar Games",
-        descripcion: "El Oeste americano cobra vida en esta obra maestra de Rockstar. John Marston busca redención en un mundo que se desvanece.",
-        cover: "covers/red_dead_redemption.jpg",
-        download: "#",
-        torrent: "#",
-        magnet: "#"
-    }
-];
-
-// =============================================
 //  ESTADO DE LA APLICACIÓN
 // =============================================
+let sistemas = [];
+let juegosPorSistema = {};
+let todosLosJuegos = [];
 let filtroSistema = 'xbox360';
 let busqueda = '';
 let vista = 'grid';
+let sistemaActual = null;
 
 // =============================================
 //  REFERENCIAS AL DOM
@@ -132,6 +19,8 @@ const galleryTitle = document.getElementById('galleryTitle');
 const gamesCount = document.getElementById('gamesCount');
 const totalGamesSpan = document.getElementById('totalGames');
 const totalSystemsSpan = document.getElementById('totalSystems');
+const systemsNav = document.querySelector('.systems-scroll');
+
 const modal = document.getElementById('gameModal');
 const modalClose = document.querySelector('.modal-close');
 const modalCover = document.getElementById('modalCover');
@@ -146,68 +35,134 @@ const modalTorrentBtn = document.getElementById('modalTorrentBtn');
 const modalMagnetBtn = document.getElementById('modalMagnetBtn');
 
 // =============================================
+//  CARGAR SISTEMAS Y JUEGOS
+// =============================================
+async function cargarSistemas() {
+    try {
+        const respuesta = await fetch('data/sistemas.json');
+        const data = await respuesta.json();
+        sistemas = data.sistemas;
+        
+        // Cargar juegos de cada sistema
+        await cargarTodosLosJuegos();
+        
+        // Generar filtros dinámicamente
+        generarFiltros();
+        
+        // Inicializar
+        actualizarStats();
+        renderizarJuegos();
+        
+    } catch (error) {
+        console.error('Error cargando sistemas:', error);
+        cargarDatosRespaldo();
+    }
+}
+
+async function cargarTodosLosJuegos() {
+    todosLosJuegos = [];
+    
+    for (const sistema of sistemas) {
+        try {
+            const respuesta = await fetch(`data/${sistema.archivo}`);
+            const data = await respuesta.json();
+            
+            // Guardar juegos por sistema para acceso rápido
+            juegosPorSistema[sistema.id] = data.juegos;
+            
+            // Añadir al array plano con información del sistema
+            data.juegos.forEach(juego => {
+                todosLosJuegos.push({
+                    ...juego,
+                    sistema: sistema.id,
+                    sistemaNombre: sistema.nombre,
+                    sistemaIcono: sistema.icono
+                });
+            });
+        } catch (error) {
+            console.error(`Error cargando ${sistema.archivo}:`, error);
+            juegosPorSistema[sistema.id] = [];
+        }
+    }
+}
+
+// =============================================
+//  GENERAR FILTROS AUTOMÁTICAMENTE
+// =============================================
+function generarFiltros() {
+    // Limpiar filtros existentes
+    const filtrosExistentes = systemsNav.querySelectorAll('.system-filter');
+    filtrosExistentes.forEach(btn => btn.remove());
+    
+    // Crear botón "Todos"
+    const btnTodos = document.createElement('button');
+    btnTodos.className = 'system-filter';
+    btnTodos.dataset.system = 'all';
+    btnTodos.innerHTML = `<i class="fas fa-globe"></i> Todos`;
+    btnTodos.addEventListener('click', function() {
+        document.querySelectorAll('.system-filter').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        filtroSistema = 'all';
+        renderizarJuegos();
+    });
+    systemsNav.appendChild(btnTodos);
+    
+    // Crear botón para cada sistema
+    sistemas.forEach(sistema => {
+        const btn = document.createElement('button');
+        btn.className = 'system-filter';
+        btn.dataset.system = sistema.id;
+        const count = juegosPorSistema[sistema.id] ? juegosPorSistema[sistema.id].length : 0;
+        btn.innerHTML = `<i class="fas ${sistema.icono}"></i> ${sistema.nombre} <span class="badge">${count}</span>`;
+        btn.addEventListener('click', function() {
+            document.querySelectorAll('.system-filter').forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            filtroSistema = sistema.id;
+            renderizarJuegos();
+        });
+        systemsNav.appendChild(btn);
+    });
+    
+    // Activar Xbox 360 por defecto
+    document.querySelectorAll('.system-filter').forEach(btn => {
+        if (btn.dataset.system === 'xbox360') {
+            btn.classList.add('active');
+        }
+    });
+}
+
+// =============================================
 //  FUNCIONES AUXILIARES
 // =============================================
 function getSistemasUnicos() {
-    const sistemas = new Set(juegos.map(j => j.sistema));
-    return sistemas.size;
+    return sistemas.length;
 }
 
 function actualizarStats() {
-    totalGamesSpan.textContent = juegos.length;
+    totalGamesSpan.textContent = todosLosJuegos.length;
     totalSystemsSpan.textContent = getSistemasUnicos();
 }
 
-function getIconoSistema(sistema) {
-    const mapa = {
-        'nes': 'fa-gamepad',
-        'snes': 'fa-gamepad',
-        'megadrive': 'fa-gamepad',
-        'ps1': 'fa-gamepad',
-        'ps2': 'fa-gamepad',
-        'gamecube': 'fa-gamepad',
-        'xbox360': 'fa-xbox',
-        'switch': 'fa-gamepad',
-        'ps5': 'fa-gamepad'
-    };
-    return mapa[sistema] || 'fa-gamepad';
+function getNombreSistemaUpper(sistemaId) {
+    const sistema = sistemas.find(s => s.id === sistemaId);
+    return sistema ? sistema.nombre.toUpperCase() : sistemaId.toUpperCase();
 }
 
-function getNombreSistema(sistema) {
-    const mapa = {
-        'nes': 'NES',
-        'snes': 'SNES',
-        'megadrive': 'Mega Drive',
-        'ps1': 'PS1',
-        'ps2': 'PS2',
-        'gamecube': 'GameCube',
-        'xbox360': 'Xbox 360',
-        'switch': 'Switch',
-        'ps5': 'PS5'
-    };
-    return mapa[sistema] || sistema;
+function getIconoSistema(sistemaId) {
+    const sistema = sistemas.find(s => s.id === sistemaId);
+    return sistema ? sistema.icono : 'fa-gamepad';
 }
 
-function getNombreSistemaUpper(sistema) {
-    const mapa = {
-        'nes': 'NES',
-        'snes': 'SNES',
-        'megadrive': 'MEGA DRIVE',
-        'ps1': 'PS1',
-        'ps2': 'PS2',
-        'gamecube': 'GAMECUBE',
-        'xbox360': 'XBOX 360',
-        'switch': 'SWITCH',
-        'ps5': 'PS5'
-    };
-    return mapa[sistema] || sistema.toUpperCase();
+function getNombreSistema(sistemaId) {
+    const sistema = sistemas.find(s => s.id === sistemaId);
+    return sistema ? sistema.nombre : sistemaId;
 }
 
 // =============================================
 //  RENDERIZADO DE JUEGOS
 // =============================================
 function renderizarJuegos() {
-    const filtrados = juegos.filter(j => {
+    const filtrados = todosLosJuegos.filter(j => {
         const coincideSistema = filtroSistema === 'all' || j.sistema === filtroSistema;
         const coincideBusqueda = j.titulo.toLowerCase().includes(busqueda.toLowerCase());
         return coincideSistema && coincideBusqueda;
@@ -237,7 +192,6 @@ function renderizarJuegos() {
             </div>
             <div class="card-info">
                 <div class="card-title">${j.titulo}</div>
-                <!-- SIN SUBTÍTULO -->
             </div>
         </div>
     `).join('');
@@ -247,18 +201,15 @@ function renderizarJuegos() {
 }
 
 // =============================================
-//  MODAL CON 3 BOTONES
+//  MODAL
 // =============================================
 function abrirModal(id) {
-    const juego = juegos.find(j => j.id === id);
+    const juego = todosLosJuegos.find(j => j.id === id);
     if (!juego) return;
 
-    // Actualizar portada
     modalCover.src = juego.cover || '';
     modalCover.alt = juego.titulo;
     modalTitle.textContent = juego.titulo;
-
-    // Meta info
     modalSystem.innerHTML = `<i class="fas ${getIconoSistema(juego.sistema)}"></i> ${getNombreSistema(juego.sistema)}`;
     modalYear.innerHTML = `<i class="far fa-calendar-alt"></i> ${juego.año || '—'}`;
     modalGenre.innerHTML = `<i class="fas fa-tag"></i> ${juego.genero || '—'}`;
@@ -336,15 +287,6 @@ modalClose.addEventListener('click', cerrarModal);
 // =============================================
 //  FILTROS Y BÚSQUEDA
 // =============================================
-document.querySelectorAll('.system-filter').forEach(btn => {
-    btn.addEventListener('click', function() {
-        document.querySelectorAll('.system-filter').forEach(b => b.classList.remove('active'));
-        this.classList.add('active');
-        filtroSistema = this.dataset.system;
-        renderizarJuegos();
-    });
-});
-
 searchInput.addEventListener('input', function() {
     busqueda = this.value.trim();
     renderizarJuegos();
@@ -380,15 +322,50 @@ document.getElementById('listViewBtn').addEventListener('click', function() {
 });
 
 // =============================================
+//  DATOS DE RESPALDO (por si falla la carga)
+// =============================================
+function cargarDatosRespaldo() {
+    sistemas = [
+        {
+            id: 'xbox360',
+            nombre: 'Xbox 360',
+            icono: 'fa-xbox',
+            archivo: 'xbox360.json'
+        }
+    ];
+    juegosPorSistema = {
+        xbox360: [
+            {
+                id: 1,
+                titulo: "Street Fighter X Tekken",
+                año: 2012,
+                genero: "Lucha",
+                desarrolladora: "Capcom",
+                descripcion: "El crossover definitivo.",
+                cover: "covers/xbox360/sfxtekken.jpg",
+                download: "#",
+                torrent: "#",
+                magnet: "#"
+            }
+        ]
+    };
+    todosLosJuegos = [];
+    sistemas.forEach(sistema => {
+        juegosPorSistema[sistema.id].forEach(juego => {
+            todosLosJuegos.push({
+                ...juego,
+                sistema: sistema.id,
+                sistemaNombre: sistema.nombre,
+                sistemaIcono: sistema.icono
+            });
+        });
+    });
+    generarFiltros();
+    actualizarStats();
+    renderizarJuegos();
+}
+
+// =============================================
 //  INICIALIZACIÓN
 // =============================================
-document.querySelectorAll('.system-filter').forEach(btn => {
-    if (btn.dataset.system === 'xbox360') {
-        btn.classList.add('active');
-    } else {
-        btn.classList.remove('active');
-    }
-});
-
-actualizarStats();
-renderizarJuegos();
+cargarSistemas();
