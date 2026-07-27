@@ -22,12 +22,20 @@
 
             <div class="search-wrapper">
                 <i class="fas fa-search search-icon"></i>
-                <input type="text" id="searchInput" placeholder="Search Xbox 360 ROMS..." disabled />
+                <input type="text" id="searchInput" placeholder="Buscar juego..." disabled />
             </div>
 
             <button class="search-btn" disabled>
                 <i class="fas fa-search"></i> SEARCH
             </button>
+
+            <!-- SELECTOR DE SISTEMAS (dropdown) -->
+            <div class="system-select-wrapper">
+                <i class="fas fa-gamepad"></i>
+                <select id="systemSelect" class="system-select" disabled>
+                    <option value="all">Todos los sistemas</option>
+                </select>
+            </div>
 
             <div class="header-actions">
                 <button id="gridViewBtn" class="view-btn active" title="Vista cuadrícula">
@@ -38,16 +46,9 @@
                 </button>
             </div>
         </div>
-
-        <!-- Barra de sistemas -->
-        <nav class="systems-nav">
-            <div class="systems-scroll">
-                <!-- Los botones se generan con JS -->
-            </div>
-        </nav>
     </header>
 
-    <!-- ============ HERO (con estadísticas) ============ -->
+    <!-- ============ HERO ============ -->
     <section class="hero">
         <div class="hero-content">
             <div class="hero-text">
@@ -68,7 +69,7 @@
     <!-- ============ GALERÍA ============ -->
     <main class="main-content">
         <div class="gallery-header">
-            <h2 id="galleryTitle">XBOX 360</h2>
+            <h2 id="galleryTitle">Cargando...</h2>
             <span id="gamesCount" class="games-count">0 juegos</span>
         </div>
 
@@ -124,7 +125,7 @@
                     </div>
                     <p id="modalDeveloper"><strong>Desarrolladora:</strong> <span>—</span></p>
                     <p id="modalDescription" class="modal-description">Descripción del juego.</p>
-                    
+
                     <div class="modal-actions">
                         <a id="modalDownloadBtn" href="#" target="_blank" class="btn-primary btn-download">
                             <i class="fas fa-download"></i> Descarga Directa
