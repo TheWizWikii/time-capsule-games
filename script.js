@@ -20,6 +20,7 @@ const gamesCount = document.getElementById('gamesCount');
 const totalGamesSpan = document.getElementById('totalGames');
 const totalSystemsSpan = document.getElementById('totalSystems');
 const systemsNav = document.querySelector('.systems-scroll');
+const initialLoading = document.getElementById('initialLoading');
 
 const modal = document.getElementById('gameModal');
 const modalClose = document.querySelector('.modal-close');
@@ -42,9 +43,6 @@ function mostrarSpinner(mensaje = 'Cargando biblioteca de juegos...') {
         <div class="loading-message" id="loadingSpinner">
             <div class="loading-spinner"></div>
             <p>${mensaje}</p>
-            <p style="font-size:13px;color:var(--text-muted);margin-top:4px;">
-                <i class="fas fa-database"></i> Cargando datos de sistemas...
-            </p>
         </div>
     `;
     noResults.style.display = 'none';
@@ -58,7 +56,7 @@ function mostrarError(mensaje, detalle = '') {
         <div class="error-page">
             <i class="fas fa-exclamation-triangle error-icon"></i>
             <h2>⚠️ Error al cargar los datos</h2>
-            <p>No se pudieron cargar los archivos de juegos.</p>
+            <p>${mensaje}</p>
             ${detalle ? `
                 <div class="error-details">
                     <strong>Detalle técnico:</strong><br />
@@ -77,66 +75,27 @@ function mostrarError(mensaje, detalle = '') {
 }
 
 // =============================================
-//  CARGAR SISTEMAS Y JUEGOS (TODOS A LA VEZ)
+//  CARGAR SISTEMAS (solo la lista)
 // =============================================
-async function cargarDatos() {
-    mostrarSpinner('Cargando biblioteca de juegos...');
-    
+async function cargarSistemas() {
     try {
-        // 1. Cargar sistemas.json
-        const respSistemas = await fetch('data/sistemas.json');
-        if (!respSistemas.ok) {
-            throw new Error(`HTTP ${respSistemas.status}: ${respSistemas.statusText}`);
+        const respuesta = await fetch('data/sistemas.json');
+        
+        if (!respuesta.ok) {
+            throw new Error(`HTTP ${respuesta.status}: ${respuesta.statusText}`);
         }
-        const dataSistemas = await respSistemas.json();
-        sistemas = dataSistemas.sistemas;
+        
+        const data = await respuesta.json();
+        sistemas = data.sistemas;
         
         if (!sistemas || sistemas.length === 0) {
             throw new Error('El archivo sistemas.json está vacío o mal formado');
         }
         
-        // 2. Cargar TODOS los JSON de juegos en paralelo
-        const promesas = sistemas.map(async (sistema) => {
-            try {
-                const resp = await fetch(`data/${sistema.archivo}`);
-                if (!resp.ok) {
-                    console.warn(`No se pudo cargar ${sistema.archivo}: ${resp.status}`);
-                    return { sistemaId: sistema.id, juegos: [] };
-                }
-                const data = await resp.json();
-                return { sistemaId: sistema.id, juegos: data.juegos || [] };
-            } catch (error) {
-                console.warn(`Error cargando ${sistema.archivo}:`, error);
-                return { sistemaId: sistema.id, juegos: [] };
-            }
-        });
+        // Una vez cargados los sistemas, cargar todos los juegos
+        await cargarTodosLosJuegos();
         
-        // Esperar a que terminen todas las peticiones
-        const resultados = await Promise.all(promesas);
-        
-        // 3. Procesar resultados
-        resultados.forEach(({ sistemaId, juegos }) => {
-            juegosPorSistema[sistemaId] = juegos;
-            
-            const sistema = sistemas.find(s => s.id === sistemaId);
-            if (sistema) {
-                juegos.forEach(juego => {
-                    todosLosJuegos.push({
-                        ...juego,
-                        sistema: sistema.id,
-                        sistemaNombre: sistema.nombre,
-                        sistemaIcono: sistema.icono
-                    });
-                });
-            }
-        });
-        
-        // 4. Verificar que haya juegos
-        if (todosLosJuegos.length === 0) {
-            throw new Error('No se encontraron juegos en ningún sistema');
-        }
-        
-        // 5. Generar filtros y renderizar
+        // Generar filtros y renderizar
         generarFiltros();
         actualizarStats();
         renderizarJuegos();
@@ -144,17 +103,71 @@ async function cargarDatos() {
         // Habilitar elementos
         searchInput.disabled = false;
         document.querySelector('.search-btn').disabled = false;
-        
         cargando = false;
         
     } catch (error) {
-        console.error('Error cargando datos:', error);
+        console.error('Error cargando sistemas:', error);
         mostrarError(
-            'No se pudieron cargar los datos.',
+            'No se pudo cargar la lista de sistemas.',
             `Error: ${error.message}`
         );
         cargando = false;
     }
+}
+
+// =============================================
+//  CARGAR TODOS LOS JUEGOS (UNO POR UNO)
+//  ===== ESTA ES LA FUNCIÓN QUE FUNCIONA =====
+// =============================================
+async function cargarTodosLosJuegos() {
+    mostrarSpinner('Cargando juegos...');
+    
+    // Recorrer cada sistema y cargar su archivo JSON
+    for (const sistema of sistemas) {
+        try {
+            const respuesta = await fetch(`data/${sistema.archivo}`);
+            
+            if (!respuesta.ok) {
+                console.warn(`No se pudo cargar ${sistema.archivo}: ${respuesta.status}`);
+                juegosPorSistema[sistema.id] = [];
+                continue;
+            }
+            
+            const data = await respuesta.json();
+            
+            if (!data.juegos) {
+                console.warn(`El archivo ${sistema.archivo} no tiene la propiedad "juegos"`);
+                juegosPorSistema[sistema.id] = [];
+                continue;
+            }
+            
+            // Guardar juegos de este sistema
+            juegosPorSistema[sistema.id] = data.juegos;
+            
+            // Añadir al array plano
+            data.juegos.forEach(juego => {
+                todosLosJuegos.push({
+                    ...juego,
+                    sistema: sistema.id,
+                    sistemaNombre: sistema.nombre,
+                    sistemaIcono: sistema.icono
+                });
+            });
+            
+            console.log(`✅ Cargados ${data.juegos.length} juegos de ${sistema.nombre}`);
+            
+        } catch (error) {
+            console.error(`Error cargando ${sistema.archivo}:`, error);
+            juegosPorSistema[sistema.id] = [];
+        }
+    }
+    
+    // Verificar que haya juegos
+    if (todosLosJuegos.length === 0) {
+        throw new Error('No se encontraron juegos en ningún sistema');
+    }
+    
+    console.log(`✅ Total: ${todosLosJuegos.length} juegos cargados`);
 }
 
 // =============================================
@@ -397,4 +410,4 @@ document.getElementById('listViewBtn').addEventListener('click', function() {
 // =============================================
 //  INICIALIZACIÓN
 // =============================================
-cargarDatos();
+cargarSistemas();
