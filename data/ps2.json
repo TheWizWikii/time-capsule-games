@@ -1,0 +1,29 @@
+{
+  "sistema": "ps2",
+  "juegos": [
+    {
+      "id": 501,
+      "titulo": "God of War II",
+      "año": 2007,
+      "genero": "Acción",
+      "desarrolladora": "Santa Monica Studio",
+      "descripcion": "Kratos continúa su venganza contra los dioses del Olimpo en esta espectacular aventura.",
+      "cover": "covers/ps2/gow2.jpg",
+      "download": "#",
+      "torrent": "#",
+      "magnet": "#"
+    },
+    {
+      "id": 502,
+      "titulo": "Shadow of the Colossus",
+      "año": 2005,
+      "genero": "Aventura",
+      "desarrolladora": "Team Ico",
+      "descripcion": "Un joven debe derrotar a 16 colosos para revivir a una chica. Una obra maestra atmosférica.",
+      "cover": "covers/ps2/sotc.jpg",
+      "download": "#",
+      "torrent": "#",
+      "magnet": "#"
+    }
+  ]
+}
