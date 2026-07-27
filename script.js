@@ -3,6 +3,8 @@
 // =============================================
 //  - cover: "covers/nombre.jpg" o URL
 //  - download: "#" si no tienes enlace
+//  - torrent: "#" si no tienes enlace torrent
+//  - magnet: "#" si no tienes enlace magnet
 //  - sistema: nes, snes, megadrive, ps1, ps2, gamecube, xbox360, switch, ps5
 // =============================================
 
@@ -16,7 +18,9 @@ const juegos = [
         desarrolladora: "Capcom",
         descripcion: "El crossover definitivo entre dos de las sagas de lucha más importantes. Street Fighter y Tekken se enfrentan en este épico juego de combate.",
         cover: "https://cdn.thegamesdb.net/images/original/boxart/front/13386-1.jpg",
-        download: "#"
+        download: "#",      // Enlace directo
+        torrent: "https://minerva-archive.org/assets/Minerva_Myrient_v0.3/Minerva_Myrient%20-%20Redump%20-%20Microsoft%20-%20Xbox%20360.torrent",       // Enlace .torrent
+        magnet: "magnet:?xt=urn:btih:c98fbaa2a36ee48e3d9423be02cdbefd9281bc7d&dn=Minerva_Myrient&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2F9.rarbg.com%3A2810%2Fannounce&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A6969%2Fannounce&tr=http%3A%2F%2Ftracker.openbittorrent.com%3A80%2Fannounce&tr=http%3A%2F%2F95.107.48.115%3A80%2Fannounce&tr=http%3A%2F%2Fopen.acgnxtracker.com%3A80%2Fannounce&tr=http%3A%2F%2Ft.acg.rip%3A6699%2Fannounce&tr=http%3A%2F%2Ft.nyaatracker.com%3A80%2Fannounce&tr=http%3A%2F%2Ftracker.bt4g.com%3A2095%2Fannounce&tr=http%3A%2F%2Ftracker.files.fm%3A6969%2Fannounce&tr=http%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=http%3A%2F%2Fvps02.net.orel.ru%3A80%2Fannounce&tr=https%3A%2F%2F1337.abcvg.info%3A443%2Fannounce&tr=https%3A%2F%2Fopentracker.i2p.rocks%3A443%2Fannounce&tr=https%3A%2F%2Ftracker.nanoha.org%3A443%2Fannounce&tr=https%3A%2F%2Ftracker.sloppyta.co%3A443%2Fannounce&tr=udp%3A%2F%2F208.83.20.20%3A6969%2Fannounce&tr=udp%3A%2F%2F37.235.174.46%3A2710%2Fannounce&tr=udp%3A%2F%2F75.127.14.224%3A2710%2Fannounce&tr=udp%3A%2F%2Fexodus.desync.com%3A6969%2Fannounce&tr=udp%3A%2F%2Fexplodie.org%3A6969%2Fannounce&tr=udp%3A%2F%2Ffe.dealclub.de%3A6969%2Fannounce&tr=udp%3A%2F%2Fipv4.tracker.harry.lu%3A80%2Fannounce&tr=udp%3A%2F%2Fmovies.zsw.ca%3A6969%2Fannounce&tr=udp%3A%2F%2Fopen.demonii.com%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&tr=udp%3A%2F%2Fopentracker.i2p.rocks%3A6969%2Fannounce&tr=udp%3A%2F%2Fp4p.arenabg.com%3A1337%2Fannounce&tr=udp%3A%2F%2Fpublic.tracker.vraphim.com%3A6969%2Fannounce&tr=udp%3A%2F%2Fretracker.lanta-net.ru%3A2710%2Fannounce&tr=udp%3A%2F%2Ftracker.0x.tf%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.dler.org%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.filemail.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.moeking.me%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.pomf.se%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.swateam.org.uk%3A2710%2Fannounce&tr=udp%3A%2F%2Ftracker.tiny-vps.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce&tr=https%3A%2F%2Ftracker1.ctix.cn%3A443%2Fannounce&tr=https%3A%2F%2Ftracker.loligirl.cn%3A443%2Fannounce&tr=udp%3A%2F%2Ftracker-udp.gbitt.info%3A80%2Fannounce&tr=https%3A%2F%2Ftracker.gbitt.info%3A443%2Fannounce&tr=http%3A%2F%2Ftracker.gbitt.info%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.therarbg.to%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.therarbg.com%3A6969%2Fannounce&tr=udp%3A%2F%2Fopentracker.io%3A6969%2Fannounce&tr=udp%3A%2F%2Fnew-line.net%3A6969%2Fannounce&tr=udp%3A%2F%2Fmoonburrow.club%3A6969%2Fannounce&tr=udp%3A%2F%2Fepider.me%3A6969%2Fannounce&tr=udp%3A%2F%2Fbt1.archive.org%3A6969%2Fannounce&tr=udp%3A%2F%2Fbt.ktrackers.com%3A6666%2Fannounce&so=3759"         // Enlace magnet
     },
     {
         id: 2,
@@ -27,7 +31,9 @@ const juegos = [
         desarrolladora: "Tango Gameworks",
         descripcion: "Del creador de Resident Evil, Shinji Mikami. Un terrorífico viaje a través de mentes retorcidas y realidades distorsionadas.",
         cover: "covers/the_evil_within.jpg",
-        download: "#"
+        download: "#",
+        torrent: "#",
+        magnet: "#"
     },
     {
         id: 3,
@@ -38,7 +44,9 @@ const juegos = [
         desarrolladora: "Koei Tecmo",
         descripcion: "La entrega definitiva de la saga Dead or Alive con gráficos mejorados, nuevos personajes y mecánicas de combate refinadas.",
         cover: "covers/doa5_last_round.jpg",
-        download: "#"
+        download: "#",
+        torrent: "#",
+        magnet: "#"
     },
     {
         id: 4,
@@ -49,7 +57,9 @@ const juegos = [
         desarrolladora: "Q Entertainment",
         descripcion: "Secuela del épico juego de acción con batallas masivas contra cientos de enemigos. Una historia de fantasía oscura.",
         cover: "covers/ninety_nine_nights_2.jpg",
-        download: "#"
+        download: "#",
+        torrent: "#",
+        magnet: "#"
     },
     {
         id: 5,
@@ -60,7 +70,9 @@ const juegos = [
         desarrolladora: "Bungie",
         descripcion: "El épico final de la trilogía original de Halo. El Jefe Maestro enfrenta al Profeta de la Verdad en una batalla por la humanidad.",
         cover: "covers/halo_3.jpg",
-        download: "#"
+        download: "#",
+        torrent: "#",
+        magnet: "#"
     },
     {
         id: 6,
@@ -71,7 +83,9 @@ const juegos = [
         desarrolladora: "Epic Games",
         descripcion: "La conclusión de la trilogía original de Gears. Marcus Fenix y su equipo luchan contra la amenaza Locust y la nueva Lambent.",
         cover: "covers/gears_of_war_3.jpg",
-        download: "#"
+        download: "#",
+        torrent: "#",
+        magnet: "#"
     },
     {
         id: 7,
@@ -82,7 +96,9 @@ const juegos = [
         desarrolladora: "Playground Games",
         descripcion: "El primer Horizon, un festival de carreras en mundo abierto con una selección increíble de coches y paisajes de ensueño.",
         cover: "covers/forza_horizon.jpg",
-        download: "#"
+        download: "#",
+        torrent: "#",
+        magnet: "#"
     },
     {
         id: 8,
@@ -93,14 +109,16 @@ const juegos = [
         desarrolladora: "Rockstar Games",
         descripcion: "El Oeste americano cobra vida en esta obra maestra de Rockstar. John Marston busca redención en un mundo que se desvanece.",
         cover: "covers/red_dead_redemption.jpg",
-        download: "#"
+        download: "#",
+        torrent: "#",
+        magnet: "#"
     }
 ];
 
 // =============================================
 //  ESTADO DE LA APLICACIÓN
 // =============================================
-let filtroSistema = 'xbox360';  // Xbox 360 por defecto
+let filtroSistema = 'xbox360';
 let busqueda = '';
 let vista = 'grid';
 
@@ -124,6 +142,8 @@ const modalGenre = document.getElementById('modalGenre');
 const modalDeveloper = document.getElementById('modalDeveloper');
 const modalDescription = document.getElementById('modalDescription');
 const modalDownloadBtn = document.getElementById('modalDownloadBtn');
+const modalTorrentBtn = document.getElementById('modalTorrentBtn');
+const modalMagnetBtn = document.getElementById('modalMagnetBtn');
 
 // =============================================
 //  FUNCIONES AUXILIARES
@@ -214,13 +234,10 @@ function renderizarJuegos() {
                     `<img src="${j.cover}" alt="${j.titulo}" loading="lazy" />` : 
                     `<div class="no-cover"><i class="fas fa-image"></i></div>`
                 }
-                <!-- SIN ETIQUETA DEL SISTEMA -->
             </div>
             <div class="card-info">
                 <div class="card-title">${j.titulo}</div>
-                <div class="card-subtitle">
-                    <i class="fas ${getIconoSistema(j.sistema)}"></i> ${getNombreSistema(j.sistema)}
-                </div>
+                <!-- SIN SUBTÍTULO -->
             </div>
         </div>
     `).join('');
@@ -230,28 +247,67 @@ function renderizarJuegos() {
 }
 
 // =============================================
-//  MODAL
+//  MODAL CON 3 BOTONES
 // =============================================
 function abrirModal(id) {
     const juego = juegos.find(j => j.id === id);
     if (!juego) return;
 
+    // Actualizar portada
     modalCover.src = juego.cover || '';
     modalCover.alt = juego.titulo;
     modalTitle.textContent = juego.titulo;
+
+    // Meta info
     modalSystem.innerHTML = `<i class="fas ${getIconoSistema(juego.sistema)}"></i> ${getNombreSistema(juego.sistema)}`;
     modalYear.innerHTML = `<i class="far fa-calendar-alt"></i> ${juego.año || '—'}`;
     modalGenre.innerHTML = `<i class="fas fa-tag"></i> ${juego.genero || '—'}`;
     modalDeveloper.querySelector('span').textContent = juego.desarrolladora || '—';
     modalDescription.textContent = juego.descripcion || 'Sin descripción disponible.';
-    modalDownloadBtn.href = juego.download || '#';
-    modalDownloadBtn.textContent = juego.download && juego.download !== '#' ? 'Visitar enlace externo' : 'Enlace no disponible';
-    if (!juego.download || juego.download === '#') {
-        modalDownloadBtn.style.opacity = '0.5';
-        modalDownloadBtn.style.pointerEvents = 'none';
-    } else {
-        modalDownloadBtn.style.opacity = '1';
+
+    // Botón 1: Descarga Directa
+    if (juego.download && juego.download !== '#') {
+        modalDownloadBtn.href = juego.download;
+        modalDownloadBtn.textContent = 'Descarga Directa';
+        modalDownloadBtn.classList.remove('disabled');
         modalDownloadBtn.style.pointerEvents = 'auto';
+        modalDownloadBtn.style.opacity = '1';
+    } else {
+        modalDownloadBtn.href = '#';
+        modalDownloadBtn.textContent = 'No disponible';
+        modalDownloadBtn.classList.add('disabled');
+        modalDownloadBtn.style.pointerEvents = 'none';
+        modalDownloadBtn.style.opacity = '0.4';
+    }
+
+    // Botón 2: Torrent
+    if (juego.torrent && juego.torrent !== '#') {
+        modalTorrentBtn.href = juego.torrent;
+        modalTorrentBtn.textContent = 'Torrent';
+        modalTorrentBtn.classList.remove('disabled');
+        modalTorrentBtn.style.pointerEvents = 'auto';
+        modalTorrentBtn.style.opacity = '1';
+    } else {
+        modalTorrentBtn.href = '#';
+        modalTorrentBtn.textContent = 'No disponible';
+        modalTorrentBtn.classList.add('disabled');
+        modalTorrentBtn.style.pointerEvents = 'none';
+        modalTorrentBtn.style.opacity = '0.4';
+    }
+
+    // Botón 3: Magnet
+    if (juego.magnet && juego.magnet !== '#') {
+        modalMagnetBtn.href = juego.magnet;
+        modalMagnetBtn.textContent = 'Magnet';
+        modalMagnetBtn.classList.remove('disabled');
+        modalMagnetBtn.style.pointerEvents = 'auto';
+        modalMagnetBtn.style.opacity = '1';
+    } else {
+        modalMagnetBtn.href = '#';
+        modalMagnetBtn.textContent = 'No disponible';
+        modalMagnetBtn.classList.add('disabled');
+        modalMagnetBtn.style.pointerEvents = 'none';
+        modalMagnetBtn.style.opacity = '0.4';
     }
 
     modal.classList.add('open');
@@ -326,7 +382,6 @@ document.getElementById('listViewBtn').addEventListener('click', function() {
 // =============================================
 //  INICIALIZACIÓN
 // =============================================
-// Aseguramos que el filtro Xbox 360 esté activo
 document.querySelectorAll('.system-filter').forEach(btn => {
     if (btn.dataset.system === 'xbox360') {
         btn.classList.add('active');
