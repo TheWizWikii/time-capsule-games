@@ -1,13 +1,60 @@
 // =============================================
+//  VERSIÓN DE PRUEBA - DATOS EN EL SCRIPT
+//  SI ESTO FUNCIONA, EL PROBLEMA SON LOS JSON
+// =============================================
+
+// =============================================
+//  DATOS DE PRUEBA (juegos de ejemplo)
+// =============================================
+const juegosDePrueba = [
+    {
+        id: 1,
+        titulo: "Street Fighter X Tekken",
+        sistema: "xbox360",
+        año: 2012,
+        genero: "Lucha",
+        desarrolladora: "Capcom",
+        descripcion: "El crossover definitivo entre dos de las sagas de lucha más importantes.",
+        cover: "covers/xbox360/street_fighter_x_tekken.jpg",
+        download: "#",
+        torrent: "#",
+        magnet: "#"
+    },
+    {
+        id: 2,
+        titulo: "The Evil Within",
+        sistema: "xbox360",
+        año: 2014,
+        genero: "Survival Horror",
+        desarrolladora: "Tango Gameworks",
+        descripcion: "Del creador de Resident Evil, Shinji Mikami.",
+        cover: "covers/xbox360/the_evil_within.jpg",
+        download: "#",
+        torrent: "#",
+        magnet: "#"
+    },
+    {
+        id: 3,
+        titulo: "Halo 3",
+        sistema: "xbox360",
+        año: 2007,
+        genero: "FPS",
+        desarrolladora: "Bungie",
+        descripcion: "El épico final de la trilogía original de Halo.",
+        cover: "covers/xbox360/halo_3.jpg",
+        download: "#",
+        torrent: "#",
+        magnet: "#"
+    }
+];
+
+// =============================================
 //  ESTADO DE LA APLICACIÓN
 // =============================================
-let sistemas = [];
-let juegosPorSistema = {};
 let todosLosJuegos = [];
 let filtroSistema = 'xbox360';
 let busqueda = '';
 let vista = 'grid';
-let cargando = true;
 
 // =============================================
 //  REFERENCIAS AL DOM
@@ -36,99 +83,29 @@ const modalTorrentBtn = document.getElementById('modalTorrentBtn');
 const modalMagnetBtn = document.getElementById('modalMagnetBtn');
 
 // =============================================
-//  CARGAR SISTEMAS (solo la lista)
+//  INICIALIZAR CON DATOS DE PRUEBA
 // =============================================
-async function cargarSistemas() {
-    try {
-        const respuesta = await fetch('data/sistemas.json');
-        
-        if (!respuesta.ok) {
-            throw new Error(`HTTP ${respuesta.status}: ${respuesta.statusText}`);
-        }
-        
-        const data = await respuesta.json();
-        sistemas = data.sistemas;
-        
-        if (!sistemas || sistemas.length === 0) {
-            throw new Error('El archivo sistemas.json está vacío o mal formado');
-        }
-        
-        // Una vez cargados los sistemas, cargar todos los juegos
-        await cargarTodosLosJuegos();
-        
-        // Generar filtros y renderizar
-        generarFiltros();
-        actualizarStats();
-        renderizarJuegos();
-        
-        // Habilitar elementos
-        searchInput.disabled = false;
-        document.querySelector('.search-btn').disabled = false;
-        cargando = false;
-        
-    } catch (error) {
-        console.error('Error cargando sistemas:', error);
-        mostrarError(
-            'No se pudo cargar la lista de sistemas.',
-            `Error: ${error.message}`
-        );
-        cargando = false;
-    }
-}
-
-// =============================================
-//  CARGAR TODOS LOS JUEGOS (UNO POR UNO)
-//  ===== ESTA ES LA FUNCIÓN QUE FUNCIONA =====
-// =============================================
-async function cargarTodosLosJuegos() {
-    mostrarSpinner('Cargando juegos...');
+function inicializar() {
+    // Copiar datos de prueba
+    todosLosJuegos = juegosDePrueba.map(j => ({
+        ...j,
+        sistemaNombre: 'Xbox 360',
+        sistemaIcono: 'fa-xbox'
+    }));
     
-    // Recorrer cada sistema y cargar su archivo JSON
-    for (const sistema of sistemas) {
-        try {
-            const respuesta = await fetch(`data/${sistema.archivo}`);
-            
-            if (!respuesta.ok) {
-                console.warn(`No se pudo cargar ${sistema.archivo}: ${respuesta.status}`);
-                juegosPorSistema[sistema.id] = [];
-                continue;
-            }
-            
-            const data = await respuesta.json();
-            
-            if (!data.juegos) {
-                console.warn(`El archivo ${sistema.archivo} no tiene la propiedad "juegos"`);
-                juegosPorSistema[sistema.id] = [];
-                continue;
-            }
-            
-            // Guardar juegos de este sistema
-            juegosPorSistema[sistema.id] = data.juegos;
-            
-            // Añadir al array plano
-            data.juegos.forEach(juego => {
-                todosLosJuegos.push({
-                    ...juego,
-                    sistema: sistema.id,
-                    sistemaNombre: sistema.nombre,
-                    sistemaIcono: sistema.icono
-                });
-            });
-            
-            console.log(`✅ Cargados ${data.juegos.length} juegos de ${sistema.nombre}`);
-            
-        } catch (error) {
-            console.error(`Error cargando ${sistema.archivo}:`, error);
-            juegosPorSistema[sistema.id] = [];
-        }
-    }
+    // Generar filtros
+    generarFiltros();
+    actualizarStats();
+    renderizarJuegos();
     
-    // Verificar que haya juegos
-    if (todosLosJuegos.length === 0) {
-        throw new Error('No se encontraron juegos en ningún sistema');
-    }
+    // Habilitar elementos
+    searchInput.disabled = false;
+    document.querySelector('.search-btn').disabled = false;
     
-    console.log(`✅ Total: ${todosLosJuegos.length} juegos cargados`);
+    // Ocultar loading
+    if (initialLoading) {
+        initialLoading.style.display = 'none';
+    }
 }
 
 // =============================================
@@ -152,63 +129,44 @@ function generarFiltros() {
     });
     systemsNav.appendChild(btnTodos);
     
-    // Botones por sistema
-    sistemas.forEach(sistema => {
-        const btn = document.createElement('button');
-        btn.className = 'system-filter';
-        btn.dataset.system = sistema.id;
-        const count = juegosPorSistema[sistema.id] ? juegosPorSistema[sistema.id].length : 0;
-        btn.innerHTML = `<i class="fas ${sistema.icono}"></i> ${sistema.nombre} <span class="badge">${count}</span>`;
-        btn.addEventListener('click', function() {
-            document.querySelectorAll('.system-filter').forEach(b => b.classList.remove('active'));
-            this.classList.add('active');
-            filtroSistema = sistema.id;
-            renderizarJuegos();
-        });
-        systemsNav.appendChild(btn);
+    // Botón Xbox 360
+    const btnXbox = document.createElement('button');
+    btnXbox.className = 'system-filter active';
+    btnXbox.dataset.system = 'xbox360';
+    btnXbox.innerHTML = `<i class="fab fa-xbox"></i> Xbox 360 <span class="badge">${todosLosJuegos.length}</span>`;
+    btnXbox.addEventListener('click', function() {
+        document.querySelectorAll('.system-filter').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        filtroSistema = 'xbox360';
+        renderizarJuegos();
     });
-    
-    // Activar Xbox 360 por defecto
-    document.querySelectorAll('.system-filter').forEach(btn => {
-        if (btn.dataset.system === 'xbox360') {
-            btn.classList.add('active');
-        }
-    });
+    systemsNav.appendChild(btnXbox);
 }
 
 // =============================================
 //  FUNCIONES AUXILIARES
 // =============================================
-function getSistemasUnicos() {
-    return sistemas.length;
-}
-
 function actualizarStats() {
     totalGamesSpan.textContent = todosLosJuegos.length;
-    totalSystemsSpan.textContent = getSistemasUnicos();
+    totalSystemsSpan.textContent = '1';
 }
 
 function getNombreSistemaUpper(sistemaId) {
-    const sistema = sistemas.find(s => s.id === sistemaId);
-    return sistema ? sistema.nombre.toUpperCase() : sistemaId.toUpperCase();
+    return 'XBOX 360';
 }
 
 function getIconoSistema(sistemaId) {
-    const sistema = sistemas.find(s => s.id === sistemaId);
-    return sistema ? sistema.icono : 'fa-gamepad';
+    return 'fa-xbox';
 }
 
 function getNombreSistema(sistemaId) {
-    const sistema = sistemas.find(s => s.id === sistemaId);
-    return sistema ? sistema.nombre : sistemaId;
+    return 'Xbox 360';
 }
 
 // =============================================
 //  RENDERIZADO DE JUEGOS
 // =============================================
 function renderizarJuegos() {
-    if (cargando) return;
-    
     const filtrados = todosLosJuegos.filter(j => {
         const coincideSistema = filtroSistema === 'all' || j.sistema === filtroSistema;
         const coincideBusqueda = j.titulo.toLowerCase().includes(busqueda.toLowerCase());
@@ -257,7 +215,7 @@ function abrirModal(id) {
     modalCover.src = juego.cover || '';
     modalCover.alt = juego.titulo;
     modalTitle.textContent = juego.titulo;
-    modalSystem.innerHTML = `<i class="fas ${getIconoSistema(juego.sistema)}"></i> ${getNombreSistema(juego.sistema)}`;
+    modalSystem.innerHTML = `<i class="fas fa-xbox"></i> Xbox 360`;
     modalYear.innerHTML = `<i class="far fa-calendar-alt"></i> ${juego.año || '—'}`;
     modalGenre.innerHTML = `<i class="fas fa-tag"></i> ${juego.genero || '—'}`;
     modalDeveloper.querySelector('span').textContent = juego.desarrolladora || '—';
@@ -371,4 +329,4 @@ document.getElementById('listViewBtn').addEventListener('click', function() {
 // =============================================
 //  INICIALIZACIÓN
 // =============================================
-cargarSistemas();
+inicializar();
