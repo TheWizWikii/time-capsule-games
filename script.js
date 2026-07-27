@@ -15,7 +15,7 @@ const juegos = [
         genero: "Plataformas",
         desarrolladora: "Nintendo",
         descripcion: "El clásico juego que revolucionó los plataformas. Mario debe rescatar a la princesa Peach del malvado Bowser.",
-        cover: "covers/super_mario_bros.jpg",  // O usa URL: "https://ejemplo.com/cover.jpg"
+        cover: "covers/super_mario_bros.png",  // O usa URL: "https://ejemplo.com/cover.jpg"
         download: "#"  // Cambia por tu enlace externo
     },
     {
