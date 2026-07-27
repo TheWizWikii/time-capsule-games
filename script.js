@@ -19,7 +19,7 @@ const galleryTitle = document.getElementById('galleryTitle');
 const gamesCount = document.getElementById('gamesCount');
 const totalGamesSpan = document.getElementById('totalGames');
 const totalSystemsSpan = document.getElementById('totalSystems');
-const systemsNav = document.querySelector('.systems-scroll');
+const systemSelect = document.getElementById('systemSelect');
 
 const modal = document.getElementById('gameModal');
 const modalClose = document.querySelector('.modal-close');
@@ -71,6 +71,7 @@ function mostrarError(mensaje, detalle = '') {
     gamesCount.textContent = '—';
     searchInput.disabled = true;
     document.querySelector('.search-btn').disabled = true;
+    systemSelect.disabled = true;
 }
 
 // =============================================
@@ -98,7 +99,7 @@ async function cargarSistemas() {
         // Cargar todos los juegos
         await cargarTodosLosJuegos();
         
-        // Generar filtros y renderizar
+        // Generar filtros en el dropdown y renderizar
         generarFiltros();
         actualizarStats();
         renderizarJuegos();
@@ -106,6 +107,7 @@ async function cargarSistemas() {
         // Habilitar elementos
         searchInput.disabled = false;
         document.querySelector('.search-btn').disabled = false;
+        systemSelect.disabled = false;
         cargando = false;
         
     } catch (error) {
@@ -174,48 +176,45 @@ async function cargarTodosLosJuegos() {
 }
 
 // =============================================
-//  GENERAR FILTROS
+//  GENERAR FILTROS (Dropdown)
 // =============================================
 function generarFiltros() {
-    // Limpiar filtros existentes
-    const filtrosExistentes = systemsNav.querySelectorAll('.system-filter');
-    filtrosExistentes.forEach(btn => btn.remove());
+    if (!systemSelect) return;
     
-    // Botón "Todos"
-    const btnTodos = document.createElement('button');
-    btnTodos.className = 'system-filter';
-    btnTodos.dataset.system = 'all';
-    btnTodos.innerHTML = `<i class="fas fa-globe"></i> Todos <span class="badge">${todosLosJuegos.length}</span>`;
-    btnTodos.addEventListener('click', function() {
-        document.querySelectorAll('.system-filter').forEach(b => b.classList.remove('active'));
-        this.classList.add('active');
-        filtroSistema = 'all';
-        renderizarJuegos();
-    });
-    systemsNav.appendChild(btnTodos);
+    // Limpiar opciones
+    systemSelect.innerHTML = '';
     
-    // Botones por sistema
+    // Opción "Todos"
+    const optTodos = document.createElement('option');
+    optTodos.value = 'all';
+    optTodos.textContent = `🌐 Todos (${todosLosJuegos.length})`;
+    systemSelect.appendChild(optTodos);
+    
+    // Opciones por sistema
     sistemas.forEach(sistema => {
-        const btn = document.createElement('button');
-        btn.className = 'system-filter';
-        btn.dataset.system = sistema.id;
+        const opt = document.createElement('option');
+        opt.value = sistema.id;
         const count = juegosPorSistema[sistema.id] ? juegosPorSistema[sistema.id].length : 0;
-        btn.innerHTML = `<i class="fas ${sistema.icono}"></i> ${sistema.nombre} <span class="badge">${count}</span>`;
-        btn.addEventListener('click', function() {
-            document.querySelectorAll('.system-filter').forEach(b => b.classList.remove('active'));
-            this.classList.add('active');
-            filtroSistema = sistema.id;
-            renderizarJuegos();
-        });
-        systemsNav.appendChild(btn);
+        opt.textContent = `${sistema.nombre} (${count})`;
+        systemSelect.appendChild(opt);
     });
     
-    // Activar Xbox 360 por defecto
-    document.querySelectorAll('.system-filter').forEach(btn => {
-        if (btn.dataset.system === 'xbox360') {
-            btn.classList.add('active');
-        }
-    });
+    // Seleccionar filtro actual o Xbox 360 por defecto
+    if (filtroSistema && systemSelect.querySelector(`option[value="${filtroSistema}"]`)) {
+        systemSelect.value = filtroSistema;
+    } else {
+        systemSelect.value = 'xbox360';
+        filtroSistema = 'xbox360';
+    }
+    
+    // Evento al cambiar
+    systemSelect.removeEventListener('change', cambiarSistema);
+    systemSelect.addEventListener('change', cambiarSistema);
+}
+
+function cambiarSistema() {
+    filtroSistema = systemSelect.value;
+    renderizarJuegos();
 }
 
 // =============================================
@@ -226,8 +225,8 @@ function getSistemasUnicos() {
 }
 
 function actualizarStats() {
-    totalGamesSpan.textContent = todosLosJuegos.length;
-    totalSystemsSpan.textContent = getSistemasUnicos();
+    if (totalGamesSpan) totalGamesSpan.textContent = todosLosJuegos.length;
+    if (totalSystemsSpan) totalSystemsSpan.textContent = getSistemasUnicos();
 }
 
 function getNombreSistemaUpper(sistemaId) {
