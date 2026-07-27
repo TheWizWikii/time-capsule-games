@@ -28,6 +28,15 @@
             <button class="search-btn" disabled>
                 <i class="fas fa-search"></i> SEARCH
             </button>
+
+            <div class="header-actions">
+                <button id="gridViewBtn" class="view-btn active" title="Vista cuadrícula">
+                    <i class="fas fa-th"></i>
+                </button>
+                <button id="listViewBtn" class="view-btn" title="Vista lista">
+                    <i class="fas fa-list"></i>
+                </button>
+            </div>
         </div>
 
         <!-- Barra de sistemas -->
@@ -41,19 +50,12 @@
     <!-- ============ GALERÍA ============ -->
     <main class="main-content">
         <div class="gallery-header">
-            <h2 id="galleryTitle">Cargando...</h2>
+            <h2 id="galleryTitle">XBOX 360</h2>
             <span id="gamesCount" class="games-count">0 juegos</span>
         </div>
 
-        <!-- ===== CONTENEDOR PRINCIPAL ===== -->
-        <div id="appContainer">
-            <div id="gameGrid" class="game-grid">
-                <!-- Loading inicial -->
-                <div class="loading-message" id="initialLoading">
-                    <div class="loading-spinner"></div>
-                    <p>Cargando biblioteca de juegos...</p>
-                </div>
-            </div>
+        <div id="gameGrid" class="game-grid">
+            <!-- Los juegos se renderizan aquí -->
         </div>
 
         <div id="noResults" class="no-results" style="display: none;">
