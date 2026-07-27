@@ -1,0 +1,17 @@
+{
+  "sistema": "ps5",
+  "juegos": [
+    {
+      "id": 801,
+      "titulo": "God of War Ragnarök",
+      "año": 2022,
+      "genero": "Acción",
+      "desarrolladora": "Santa Monica Studio",
+      "descripcion": "El épico final de la saga nórdica. Kratos y Atreus se enfrentan al Ragnarök en un viaje emocional por los nueve reinos.",
+      "cover": "covers/ps5/ragnarok.jpg",
+      "download": "#",
+      "torrent": "#",
+      "magnet": "#"
+    }
+  ]
+}
