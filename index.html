@@ -22,10 +22,10 @@
 
             <div class="search-wrapper">
                 <i class="fas fa-search search-icon"></i>
-                <input type="text" id="searchInput" placeholder="Search Xbox 360 ROMS..." />
+                <input type="text" id="searchInput" placeholder="Search Xbox 360 ROMS..." disabled />
             </div>
 
-            <button class="search-btn">
+            <button class="search-btn" disabled>
                 <i class="fas fa-search"></i> SEARCH
             </button>
         </div>
@@ -33,39 +33,7 @@
         <!-- Barra de sistemas -->
         <nav class="systems-nav">
             <div class="systems-scroll">
-                <button class="system-filter" data-system="all">
-                    <i class="fas fa-globe"></i> Todos
-                </button>
-                <button class="system-filter active" data-system="xbox360">
-                    <i class="fab fa-xbox"></i> Xbox 360
-                </button>
-                <button class="system-filter active" data-system="ps3">
-                    <i class="fab fa-xbox"></i> PS3
-                </button>
-                <button class="system-filter" data-system="nes">
-                    <i class="fas fa-gamepad"></i> NES
-                </button>
-                <button class="system-filter" data-system="snes">
-                    <i class="fas fa-gamepad"></i> SNES
-                </button>
-                <button class="system-filter" data-system="megadrive">
-                    <i class="fas fa-gamepad"></i> Mega Drive
-                </button>
-                <button class="system-filter" data-system="ps1">
-                    <i class="fas fa-gamepad"></i> PS1
-                </button>
-                <button class="system-filter" data-system="ps2">
-                    <i class="fas fa-gamepad"></i> PS2
-                </button>
-                <button class="system-filter" data-system="gamecube">
-                    <i class="fas fa-gamepad"></i> GameCube
-                </button>
-                <button class="system-filter" data-system="switch">
-                    <i class="fas fa-gamepad"></i> Switch
-                </button>
-                <button class="system-filter" data-system="ps5">
-                    <i class="fas fa-gamepad"></i> PS5
-                </button>
+                <!-- Los botones se generan con JS -->
             </div>
         </nav>
     </header>
@@ -73,12 +41,19 @@
     <!-- ============ GALERÍA ============ -->
     <main class="main-content">
         <div class="gallery-header">
-            <h2 id="galleryTitle">XBOX 360</h2>
+            <h2 id="galleryTitle">Cargando...</h2>
             <span id="gamesCount" class="games-count">0 juegos</span>
         </div>
 
-        <div id="gameGrid" class="game-grid">
-            <!-- Los juegos se renderizan aquí -->
+        <!-- ===== CONTENEDOR PRINCIPAL ===== -->
+        <div id="appContainer">
+            <div id="gameGrid" class="game-grid">
+                <!-- Loading inicial -->
+                <div class="loading-message" id="initialLoading">
+                    <div class="loading-spinner"></div>
+                    <p>Cargando biblioteca de juegos...</p>
+                </div>
+            </div>
         </div>
 
         <div id="noResults" class="no-results" style="display: none;">
@@ -130,25 +105,18 @@
                     <p id="modalDeveloper"><strong>Desarrolladora:</strong> <span>—</span></p>
                     <p id="modalDescription" class="modal-description">Descripción del juego.</p>
                     
-                    <!-- ===== 3 BOTONES DE DESCARGA ===== -->
                     <div class="modal-actions">
-                        <!-- Botón 1: Enlace Directo -->
                         <a id="modalDownloadBtn" href="#" target="_blank" class="btn-primary btn-download">
                             <i class="fas fa-download"></i> Descarga Directa
                         </a>
-                        
-                        <!-- Botón 2: Torrent -->
                         <a id="modalTorrentBtn" href="#" target="_blank" class="btn-torrent">
                             <i class="fas fa-magnet"></i> Torrent
                         </a>
-                        
-                        <!-- Botón 3: Magnet -->
                         <a id="modalMagnetBtn" href="#" target="_blank" class="btn-magnet">
                             <i class="fas fa-link"></i> Magnet
                         </a>
                     </div>
 
-                    <!-- Botón cerrar (fuera del flex de los 3 botones) -->
                     <div class="modal-close-wrapper">
                         <button class="btn-secondary" onclick="closeModal()">
                             <i class="fas fa-times"></i> Cerrar
