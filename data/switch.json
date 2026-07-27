@@ -1,0 +1,17 @@
+{
+  "sistema": "switch",
+  "juegos": [
+    {
+      "id": 701,
+      "titulo": "The Legend of Zelda: Breath of the Wild",
+      "año": 2017,
+      "genero": "Aventura",
+      "desarrolladora": "Nintendo",
+      "descripcion": "El juego que redefinió la saga. Link despierta tras 100 años para derrotar a Ganon en un mundo abierto.",
+      "cover": "covers/switch/botw.jpg",
+      "download": "#",
+      "torrent": "#",
+      "magnet": "#"
+    }
+  ]
+}
