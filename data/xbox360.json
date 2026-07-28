@@ -1440,6 +1440,30 @@
       "download": "#",
       "torrent": "https://minerva-archive.org/assets/Minerva_Myrient_v0.3/Minerva_Myrient%20-%20Redump%20-%20Microsoft%20-%20Xbox%20360.torrent",
       "magnet": "#"
+    },
+    {
+      "id": 121,
+      "titulo": "Street Fighter X Tekken",
+      "año": 2012,
+      "genero": "Lucha",
+      "desarrolladora": "Capcom",
+      "descripcion": "El crossover definitivo entre dos de las sagas de lucha más importantes. Street Fighter y Tekken se enfrentan en este épico juego de combate con personajes de ambos universos. Incluye mecánicas de lucha por parejas y combos espectaculares.",
+      "cover": "covers/xbox360/street_fighter_x_tekken.jpg",
+      "download": "#",
+      "torrent": "https://minerva-archive.org/assets/Minerva_Myrient_v0.3/Minerva_Myrient%20-%20Redump%20-%20Microsoft%20-%20Xbox%20360.torrent",
+      "magnet": "#"
+    },
+    {
+      "id": 122,
+      "titulo": "The Evil Within",
+      "año": 2014,
+      "genero": "Survival Horror",
+      "desarrolladora": "Tango Gameworks / Bethesda",
+      "descripcion": "Del creador de Resident Evil, Shinji Mikami. Un terrorífico viaje a través de mentes retorcidas y realidades distorsionadas. El detective Sebastian Castellanos investiga una masacre y se encuentra atrapado en un mundo de pesadilla donde la muerte acecha en cada esquina.",
+      "cover": "covers/xbox360/the_evil_within.jpg",
+      "download": "#",
+      "torrent": "https://minerva-archive.org/assets/Minerva_Myrient_v0.3/Minerva_Myrient%20-%20Redump%20-%20Microsoft%20-%20Xbox%20360.torrent",
+      "magnet": "#"
     }
   ]
 }
