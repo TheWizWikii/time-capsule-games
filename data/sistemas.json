@@ -1,10 +1,172 @@
 {
   "sistemas": [
     {
-      "id": "xbox360",
-      "nombre": "Xbox 360",
-      "icono": "fa-xbox",
-      "archivo": "xbox360.json"
+      "id": "3do",
+      "nombre": "3DO",
+      "icono": "fa-gamepad",
+      "archivo": "3do.json"
+    },
+    {
+      "id": "amiga",
+      "nombre": "Amiga",
+      "icono": "fa-desktop",
+      "archivo": "amiga.json"
+    },
+    {
+      "id": "amiga-cd32",
+      "nombre": "Amiga CD32",
+      "icono": "fa-desktop",
+      "archivo": "amiga-cd32.json"
+    },
+    {
+      "id": "arcade",
+      "nombre": "Arcade",
+      "icono": "fa-joystick",
+      "archivo": "arcade.json"
+    },
+    {
+      "id": "atari-2600",
+      "nombre": "Atari 2600",
+      "icono": "fa-gamepad",
+      "archivo": "atari-2600.json"
+    },
+    {
+      "id": "atari-5200",
+      "nombre": "Atari 5200",
+      "icono": "fa-gamepad",
+      "archivo": "atari-5200.json"
+    },
+    {
+      "id": "atari-7800",
+      "nombre": "Atari 7800",
+      "icono": "fa-gamepad",
+      "archivo": "atari-7800.json"
+    },
+    {
+      "id": "atari-jaguar",
+      "nombre": "Atari Jaguar",
+      "icono": "fa-gamepad",
+      "archivo": "atari-jaguar.json"
+    },
+    {
+      "id": "atari-jaguar-cd",
+      "nombre": "Atari Jaguar CD",
+      "icono": "fa-gamepad",
+      "archivo": "atari-jaguar-cd.json"
+    },
+    {
+      "id": "atari-lynx",
+      "nombre": "Atari Lynx",
+      "icono": "fa-gamepad",
+      "archivo": "atari-lynx.json"
+    },
+    {
+      "id": "colecovision",
+      "nombre": "ColecoVision",
+      "icono": "fa-gamepad",
+      "archivo": "colecovision.json"
+    },
+    {
+      "id": "dreamcast",
+      "nombre": "Dreamcast",
+      "icono": "fa-gamepad",
+      "archivo": "dreamcast.json"
+    },
+    {
+      "id": "gameboy",
+      "nombre": "Game Boy",
+      "icono": "fa-gamepad",
+      "archivo": "gameboy.json"
+    },
+    {
+      "id": "gameboy-advance",
+      "nombre": "Game Boy Advance",
+      "icono": "fa-gamepad",
+      "archivo": "gameboy-advance.json"
+    },
+    {
+      "id": "gameboy-color",
+      "nombre": "Game Boy Color",
+      "icono": "fa-gamepad",
+      "archivo": "gameboy-color.json"
+    },
+    {
+      "id": "gamecube",
+      "nombre": "GameCube",
+      "icono": "fa-gamepad",
+      "archivo": "gamecube.json"
+    },
+    {
+      "id": "gamegear",
+      "nombre": "Game Gear",
+      "icono": "fa-gamepad",
+      "archivo": "gamegear.json"
+    },
+    {
+      "id": "intellivision",
+      "nombre": "Intellivision",
+      "icono": "fa-gamepad",
+      "archivo": "intellivision.json"
+    },
+    {
+      "id": "mega-cd",
+      "nombre": "Mega CD",
+      "icono": "fa-gamepad",
+      "archivo": "mega-cd.json"
+    },
+    {
+      "id": "megadrive",
+      "nombre": "Mega Drive",
+      "icono": "fa-gamepad",
+      "archivo": "megadrive.json"
+    },
+    {
+      "id": "msx",
+      "nombre": "MSX",
+      "icono": "fa-desktop",
+      "archivo": "msx.json"
+    },
+    {
+      "id": "n64",
+      "nombre": "Nintendo 64",
+      "icono": "fa-gamepad",
+      "archivo": "n64.json"
+    },
+    {
+      "id": "n64-diskdrive",
+      "nombre": "N64 Disk Drive",
+      "icono": "fa-gamepad",
+      "archivo": "n64-diskdrive.json"
+    },
+    {
+      "id": "nds",
+      "nombre": "Nintendo DS",
+      "icono": "fa-gamepad",
+      "archivo": "nds.json"
+    },
+    {
+      "id": "neogeo",
+      "nombre": "Neo Geo",
+      "icono": "fa-gamepad",
+      "archivo": "neogeo.json"
+    },
+    {
+      "id": "neogeo-cd",
+      "nombre": "Neo Geo CD",
+      "icono": "fa-gamepad",
+      "archivo": "neogeo-cd.json"
+    },
+    {
+      "id": "neogeo-pocket",
+      "nombre": "Neo Geo Pocket",
+      "icono": "fa-gamepad",
+      "archivo": "neogeo-pocket.json"
+    },
+    {
+      "id": "neogeo-pocket-color",
+      "nombre": "Neo Geo Pocket Color",
+      "icono": "fa-gamepad",
+      "archivo": "neogeo-pocket-color.json"
     },
     {
       "id": "nes",
@@ -13,16 +175,22 @@
       "archivo": "nes.json"
     },
     {
-      "id": "snes",
-      "nombre": "SNES",
+      "id": "pc-engine",
+      "nombre": "PC Engine",
       "icono": "fa-gamepad",
-      "archivo": "snes.json"
+      "archivo": "pc-engine.json"
     },
     {
-      "id": "megadrive",
-      "nombre": "Mega Drive",
+      "id": "pc-engine-cd",
+      "nombre": "PC Engine CD",
       "icono": "fa-gamepad",
-      "archivo": "megadrive.json"
+      "archivo": "pc-engine-cd.json"
+    },
+    {
+      "id": "pc-fx",
+      "nombre": "PC-FX",
+      "icono": "fa-gamepad",
+      "archivo": "pc-fx.json"
     },
     {
       "id": "ps1",
@@ -37,10 +205,58 @@
       "archivo": "ps2.json"
     },
     {
-      "id": "gamecube",
-      "nombre": "GameCube",
+      "id": "ps3",
+      "nombre": "PS3",
       "icono": "fa-gamepad",
-      "archivo": "gamecube.json"
+      "archivo": "ps3.json"
+    },
+    {
+      "id": "ps4",
+      "nombre": "PS4",
+      "icono": "fa-gamepad",
+      "archivo": "ps4.json"
+    },
+    {
+      "id": "ps5",
+      "nombre": "PS5",
+      "icono": "fa-gamepad",
+      "archivo": "ps5.json"
+    },
+    {
+      "id": "psp",
+      "nombre": "PSP",
+      "icono": "fa-gamepad",
+      "archivo": "psp.json"
+    },
+    {
+      "id": "ps-vita",
+      "nombre": "PS Vita",
+      "icono": "fa-gamepad",
+      "archivo": "ps-vita.json"
+    },
+    {
+      "id": "saturn",
+      "nombre": "Saturn",
+      "icono": "fa-gamepad",
+      "archivo": "saturn.json"
+    },
+    {
+      "id": "sega-32x",
+      "nombre": "Sega 32X",
+      "icono": "fa-gamepad",
+      "archivo": "sega-32x.json"
+    },
+    {
+      "id": "sega-master-system",
+      "nombre": "Sega Master System",
+      "icono": "fa-gamepad",
+      "archivo": "sega-master-system.json"
+    },
+    {
+      "id": "snes",
+      "nombre": "SNES",
+      "icono": "fa-gamepad",
+      "archivo": "snes.json"
     },
     {
       "id": "switch",
@@ -49,10 +265,58 @@
       "archivo": "switch.json"
     },
     {
-      "id": "ps5",
-      "nombre": "PS5",
+      "id": "turbo-duo",
+      "nombre": "Turbo Duo",
       "icono": "fa-gamepad",
-      "archivo": "ps5.json"
+      "archivo": "turbo-duo.json"
+    },
+    {
+      "id": "virtual-boy",
+      "nombre": "Virtual Boy",
+      "icono": "fa-gamepad",
+      "archivo": "virtual-boy.json"
+    },
+    {
+      "id": "wii",
+      "nombre": "Wii",
+      "icono": "fa-gamepad",
+      "archivo": "wii.json"
+    },
+    {
+      "id": "wii-u",
+      "nombre": "Wii U",
+      "icono": "fa-gamepad",
+      "archivo": "wii-u.json"
+    },
+    {
+      "id": "wonderswan",
+      "nombre": "WonderSwan",
+      "icono": "fa-gamepad",
+      "archivo": "wonderswan.json"
+    },
+    {
+      "id": "wonderswan-color",
+      "nombre": "WonderSwan Color",
+      "icono": "fa-gamepad",
+      "archivo": "wonderswan-color.json"
+    },
+    {
+      "id": "xbox",
+      "nombre": "Xbox",
+      "icono": "fa-xbox",
+      "archivo": "xbox.json"
+    },
+    {
+      "id": "xbox360",
+      "nombre": "Xbox 360",
+      "icono": "fa-xbox",
+      "archivo": "xbox360.json"
+    },
+    {
+      "id": "zx-spectrum",
+      "nombre": "ZX Spectrum",
+      "icono": "fa-desktop",
+      "archivo": "zx-spectrum.json"
     }
   ]
 }
