@@ -13,7 +13,7 @@ let ordenAlfabetico = false;
 // =============================================
 //  PAGINACIÓN
 // =============================================
-const JUEGOS_POR_PAGINA = 25;
+const JUEGOS_POR_PAGINA = 24;
 let paginaActual = 1;
 
 // =============================================
@@ -29,7 +29,6 @@ const totalSystemsSpan = document.getElementById('totalSystems');
 const systemSelect = document.getElementById('systemSelect');
 const sortCheckbox = document.getElementById('sortAlphabetical');
 
-// Controles de paginación
 const paginacionContainer = document.getElementById('paginacion');
 const prevPageBtn = document.getElementById('prevPage');
 const nextPageBtn = document.getElementById('nextPage');
@@ -320,19 +319,23 @@ function renderizarJuegos() {
     }
     noResults.style.display = 'none';
     
-    const html = juegosPagina.map(j => `
-        <div class="game-card" data-id="${j.id}" onclick="abrirModal(${j.id})">
-            <div class="card-cover">
-                ${j.cover ? 
-                    `<img src="${j.cover}" alt="${j.titulo}" loading="lazy" onerror="this.style.display='none';this.parentElement.innerHTML='<div class=\\'no-cover\\'><i class=\\'fas fa-image\\'></i></div>'" />` : 
-                    `<div class="no-cover"><i class="fas fa-image"></i></div>`
-                }
+    const html = juegosPagina.map(j => {
+        // Construir ID único combinando sistema y id
+        const uniqueId = `${j.sistema}-${j.id}`;
+        return `
+            <div class="game-card" data-id="${uniqueId}" onclick="abrirModal('${uniqueId}')">
+                <div class="card-cover">
+                    ${j.cover ? 
+                        `<img src="${j.cover}" alt="${j.titulo}" loading="lazy" onerror="this.style.display='none';this.parentElement.innerHTML='<div class=\\'no-cover\\'><i class=\\'fas fa-image\\'></i></div>'" />` : 
+                        `<div class="no-cover"><i class="fas fa-image"></i></div>`
+                    }
+                </div>
+                <div class="card-info">
+                    <div class="card-title">${j.titulo}</div>
+                </div>
             </div>
-            <div class="card-info">
-                <div class="card-title">${j.titulo}</div>
-            </div>
-        </div>
-    `).join('');
+        `;
+    }).join('');
     
     grid.innerHTML = html;
     grid.classList.toggle('list-view', vista === 'list');
@@ -392,13 +395,19 @@ if (sortCheckbox) {
 }
 
 // =============================================
-//  MODAL
+//  MODAL - CORREGIDO PARA IDs ÚNICOS
 // =============================================
-function abrirModal(id) {
-    // Obtener el sistema actual del dropdown
-    const sistemaActual = document.getElementById('systemSelect').value;
-    const juego = todosLosJuegos.find(j => j.id === id && j.sistema === sistemaActual);
-    // ...
+function abrirModal(uniqueId) {
+    // Separar sistema y id del uniqueId
+    const partes = uniqueId.split('-');
+    const sistemaId = partes[0];
+    const id = parseInt(partes[1]);
+    
+    // Buscar el juego por sistema e id
+    const juego = todosLosJuegos.find(j => j.sistema === sistemaId && j.id === id);
+    if (!juego) {
+        console.error(`Juego no encontrado: ${uniqueId}`);
+        return;
     }
 
     modalCover.src = juego.cover || '';
