@@ -395,8 +395,11 @@ if (sortCheckbox) {
 //  MODAL
 // =============================================
 function abrirModal(id) {
-    const juego = todosLosJuegos.find(j => j.id === id);
-    if (!juego) return;
+    // Obtener el sistema actual del dropdown
+    const sistemaActual = document.getElementById('systemSelect').value;
+    const juego = todosLosJuegos.find(j => j.id === id && j.sistema === sistemaActual);
+    // ...
+    }
 
     modalCover.src = juego.cover || '';
     modalCover.alt = juego.titulo;
