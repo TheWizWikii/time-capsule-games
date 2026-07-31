@@ -13,7 +13,7 @@ let ordenAlfabetico = false;
 // =============================================
 //  PAGINACIÓN
 // =============================================
-const JUEGOS_POR_PAGINA = 24;
+const JUEGOS_POR_PAGINA = 25;
 let paginaActual = 1;
 
 // =============================================
