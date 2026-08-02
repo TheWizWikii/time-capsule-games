@@ -408,13 +408,17 @@ a {
     justify-content: center;
     overflow: hidden;
     position: relative;
+    /* Fondo oscuro para espacios vacíos */
+    background: radial-gradient(ellipse at center, #1a1a2e, #0a0a0f);
 }
+
 .game-card .card-cover img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;  /* ← Muestra la imagen COMPLETA */
     transition: var(--transition);
 }
+
 .game-card .card-cover .no-cover {
     color: var(--text-muted);
     font-size: 40px;
